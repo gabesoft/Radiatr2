@@ -1,4 +1,12 @@
-Special thanks to Dave Yeung and Fabio Pereira.
+Special thanks to Dave Yeung and Fabio Pereira. 
+Other contributions Chris Reade, Derek Hammer and Sudhindra Rao
+
+This is a simple hudson build monitor using greasemonkey on Firefox. 
+
+To use :
+
+Download these files and install the javascript file into greasemonkey plugin for firefox.
+After installation just edit the test-page.html to point to your hudson build machine with builds you are interested in. Load this page into Firefox and voila you are ready to go.
 
 Your html should be formatted as follows:
 
