@@ -1,114 +1,108 @@
 body {
-  background: #111111;
-  background:#111111 none repeat scroll 0% 0%;
-  font-family:Helvetica,Arial,sans-serif;
-  font-size:100px;
-  font-size-adjust:none;
-  font-stretch:normal;
-  font-style:normal;
-  font-variant:normal;
-  font-weight:normal;
-  letter-spacing:0px;
-  line-height:normal;
-  margin:0px 0px 0px 0px;
+  background:  #111111;
+  background: #111111 none repeat scroll 0% 0%;
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 100px;
+  font-size-adjust: none;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  letter-spacing: 0px;
+  line-height: normal;
+  margin: 0px 0px 0px 0px;
 }
 
 .subject {
-  font-size:125px;
-  font-weight:bold;
-  font-family: Helvetica,Arial,sans-serif;
-  letter-spacing: -2px;
-  text-decoration: none;
-  padding-left: 20px;
+  font-size: 125px;
+  font-weight: bold;
+  font-family:  Helvetica,Arial,sans-serif;
+  letter-spacing:  -2px;
+  text-decoration:  none;
+  padding-left:  20px;
 }
 
 #statuses .statusInWords {
-  font-size:50px;
-  font-family: Helvetica,Arial,sans-serif;
-  letter-spacing: 1px;
-  text-decoration: none;
-  padding-left: 25px;
+  font-size: 50px;
+  font-family:  Helvetica,Arial,sans-serif;
+  letter-spacing:  1px;
+  text-decoration:  none;
+  padding-left:  25px;
 }
 
 #statuses .changeSetComment {
-  font-size:50px;
-  font-family: Helvetica,Arial,sans-serif;
-  letter-spacing: 1px;
-  text-decoration: none;
-  padding-left: 25px;
-  color: white;
+  font-size: 50px;
+  font-family:  Helvetica,Arial,sans-serif;
+  letter-spacing:  1px;
+  text-decoration:  none;
+  padding-left:  25px;
+  color:  white;
 }
 
 #statuses .statusDetails {
-  font-size:25px;
-  font-family: Helvetica,Arial,sans-serif;
-  letter-spacing: 1px;
-  text-decoration: none;
-  padding-left: 25px;
+  font-size: 25px;
+  font-family:  Helvetica,Arial,sans-serif;
+  letter-spacing:  1px;
+  text-decoration:  none;
+  padding-left:  25px;
 }
 
 #statuses {
-  left:0pt;
-  position:absolute;
-  top:0px;
-  width:1280px;
-  z-index:99;
+  left: 0pt;
+  position: absolute;
+  top: 0px;
+  width: 1280px;
+  z-index: 99;
 }
 
 div.status {
-  padding-top: 0px;
-  padding-bottom: 0px;
-  border-bottom: 4px dotted #333333;
+  padding-top:  0px;
+  padding-bottom:  0px;
+  border-bottom:  4px dotted #333333;
 }
 
 abbr {
-  border-bottom:none;
+  border-bottom:  none;
 }
 
 .disabled {
-  color: grey;
+  color:  grey;
 }
 
 .success {
-  color: #00AA00;
+  color:  #00AA00;
 }
 
 .success .subject {
-  color: #00FF00;
+  color:  #00FF00;
 }
 
 .success .statusDetails {
-  color: #008800;
+  color:  #008800;
 }
 
 .failure {
-  color: #AA0000;
+  color:  #AA0000;
 }
 
 .failure a {
-  color: #FF0000;
+  color:  #FF0000;
 }
 
 .failure .statusDetails {
-  color: #880000;
-}
-
-.healthScore {
-	color: white;
-	float: right;
-	padding-right: 5px;
+  color:  #880000;
 }
 
 .building {   
-  color: yellow;
+  color:  yellow;
 }
 
 .building .subject{
-  color: yellow;
+  color:  yellow;
 }
 
 .building a {
-  color: yellow;
+  color:  yellow;
 }
 
 .building .statusDetails {
@@ -117,10 +111,16 @@ abbr {
 .buildingFromFailedBuild {
 }
 
+.healthScore {
+	color:  white;
+	float:  right;
+	padding-right:  5px;
+}
+
 .logo {
 }
 
 .claim {
-  background: #FFFF00;
-  color: black;
+  background:  #FFFF00;
+  color:  black;
 }

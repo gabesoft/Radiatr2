@@ -1,0 +1,49 @@
+/* 'smiley' theme styles */
+
+.disabled {
+  color: grey;
+}
+
+.status{
+  background: -moz-linear-gradient(left, #E0E0E0, #404040) ;
+}
+
+.success {
+  color: #00AA00;  
+}
+
+.success .subject {
+  color: #00FF00;
+}
+
+.success .statusDetails {
+  color: #008800;
+}
+
+.failure {
+  color: #AA0000;
+}
+
+.failure a {
+  color: #FF0000;
+}
+
+.failure .statusDetails {
+  color: #880000;
+}
+
+.building {   
+  color: yellow;
+}
+
+.building .subject{
+  color: yellow;
+}
+
+.building a {
+  color: yellow;
+}
+
+.building .statusDetails {
+}
+
