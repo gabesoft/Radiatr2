@@ -2,7 +2,7 @@
 
 div.success{
 /*  background: -moz-linear-gradient(right, #E0E0E0, #404040) ;*/
-  background: url(images/ShinySmileyFacesWin/happy.png) no-repeat 1000px 25px;
+  background: url(images/ShinySmileyFacesWin/happy.png) no-repeat 1400px 25px;
   color: #00FF00;  
 }
 
@@ -15,7 +15,7 @@ div.success{
 }
 
 div.failure{
-  background: url(images/ShinySmileyFacesWin/surprise.png) no-repeat 1000px 25px;
+  background: url(images/ShinySmileyFacesWin/surprise.png) no-repeat 1400px 25px;
   color: #AA0000;
 }
 
@@ -28,7 +28,7 @@ div.failure{
 }
 
 div.building{
-  background: url(images/ShinySmileyFacesWin/cool.png) no-repeat 1000px 25px;
+  background: url(images/ShinySmileyFacesWin/cool.png) no-repeat 1400px 25px;
   color: yellow;
 }
 
@@ -45,6 +45,6 @@ div.building{
 
 div.disabled{
   color: grey;
-  background: url(images/ShinySmileyFacesWin/sad.png) no-repeat 1000px 25px;
+  background: url(images/ShinySmileyFacesWin/sad.png) no-repeat 1400px 25px;
 }
 
