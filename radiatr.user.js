@@ -127,7 +127,12 @@ function hudsonFull() {
       id: '#' + $(this).attr('id'),
       onload: function(response) {
         var status = JSON.parse(response.responseText);
-        if(status.healthReport) {
+ 	
+	if(!status.buildable) {
+	  $(this.id).addClass('disabled');
+	}
+ 
+ 	if(status.healthReport) {
           $(this.id + ' span.healthScore').html( status.healthReport[0].score );
           $(this.id + ' span.healthScore').css("opacity", (status.healthReport[0].score / 100 ));
           $(this.id + ' span.healthScore').css("font-size", $(this.id + ' span.statusInWords').css("font-size") );
