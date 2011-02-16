@@ -89,6 +89,7 @@ function getClaimObject(json) {
 function hudson() {
   $('.status').each(function () {
     this.buildable = true;
+    this.wasFailed = false;
     var self = this;
 
     GM_xmlhttpRequest({
@@ -99,7 +100,7 @@ function hudson() {
       onload: function(response) {
         var status = JSON.parse(response.responseText);
 	if (self.buildable) {
-	  updateClass(status, $(this.id));
+	  updateClass(status, $(this.id), wasFailed);
 	}
 
 	var statusInWords = message(status) + '&nbsp;' + duration(status, this.id) + differentialTime(status.timestamp);
@@ -134,6 +135,10 @@ function hudson() {
 	  $(this.id).removeClass('success');
 	  $(this.id).addClass('disabled');
 	}
+
+	if(status.lastSuccessfulBuild.number < status.builds[0].number) {
+	  self.wasFailed = true;
+	}
  
  	if(status.healthReport) {
           $(this.id + ' span.healthScore').html( status.healthReport[0].score );
@@ -145,10 +150,12 @@ function hudson() {
   });
 }
 
-function updateClass(status, id) {
+function updateClass(status, id, wasFailed) {
   if (status.building) {
-    if(!id.hasClass('building')) {
+    if(!id.hasClass('building') && !wasFailed) {
       appendBuilding(id);
+    } else if (!id.hasClass('building') && wasFailed) {
+      appendBuildingFailed(id);
     }
     return;
   }
@@ -159,6 +166,10 @@ function updateClass(status, id) {
 
 function appendBuilding(id) {
   id.addClass('building');
+}
+
+function appendBuildingFailed(id) {
+  id.addClass('buildingFailed');
 }
 
 function classToUpdate(status, url) {

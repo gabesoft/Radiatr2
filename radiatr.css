@@ -109,6 +109,18 @@ abbr {
   color:  yellow;
 }
 
+.buildingFailed {   
+  color:  orange;
+}
+
+.buildingFailed .subject{
+  color:  orange;
+}
+
+.buildingFailed a {
+  color:  orange;
+}
+
 .building .statusDetails {
 }
 
