@@ -53,6 +53,8 @@ $.effects.pulsate = function(o) {
 function refresh() {
   ping();
   hudson();
+  $('.status .building').filter(':not(:animated)').effect('pulsate', { times: 1, opacity: 0.5 }, 2000);
+  $('.status .buildingFailed').filter(':not(:animated)').effect('pulsate', { times: 1, opacity: 0.5 }, 2000);
   setTimeout(refresh, 3000);
 }
 
@@ -123,8 +125,6 @@ function hudson() {
         if(!claim) {
           $(this.id + " span.claim").css('display', 'hidden');
         }
-
-  	$(this.id + '.building').filter(':not(:animated)').effect("pulsate", {times: 1, opacity: 0.5}, 2000);
       }
     });
     GM_xmlhttpRequest({
@@ -141,7 +141,7 @@ function hudson() {
 	  $(this.id).addClass('disabled');
 	}
 
-	if(status.lastSuccessfulBuild.number < status.builds[0].number) {
+	if(status.lastSuccessfulBuild.number < status.lastUnsuccessfulBuild.number) {
 	  self.wasFailed = true;
 	}
  
@@ -190,6 +190,7 @@ function clearClasses(id, status) {
      removeClass('failure').
      removeClass('success').
      removeClass('disabled').
+     removeClass('buildingFailed').
      removeClass('buildingFromFailedBuild');
 }
 
