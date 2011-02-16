@@ -88,7 +88,7 @@ function getClaimObject(json) {
 }
 
 function hudson() {
-  $('.hudson').each(function () {
+  $('.status').each(function () {
     GM_xmlhttpRequest({
       method: 'GET',
       url: $('#' + $(this).attr('id') + ' a').attr('href') + '/lastBuild/api/json',
@@ -122,7 +122,7 @@ function hudson() {
 }
 
 function hudsonFull() {
-  $('.hudson').each(function () {
+  $('.status').each(function () {
     GM_xmlhttpRequest({
       method: 'GET',
       url: $('#' + $(this).attr('id') + ' a').attr('href') + 'api/json',
@@ -177,7 +177,7 @@ function clearClasses(id, status) {
 }
 
 function isSuccess(status) {
-  return status.result == 'SUCCESS';
+  return status.result === 'SUCCESS';
 }
 
 function message(status) {
