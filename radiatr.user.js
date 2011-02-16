@@ -54,7 +54,6 @@ function refresh() {
   ping();
   hudson();
   hudsonFull();
-  $('.building').filter(':not(:animated)').effect("pulsate", {times: 1, opacity: 0.5}, 2000);
   setTimeout(refresh, 3000);
 }
 
@@ -96,23 +95,27 @@ function hudson() {
       baseUrl: $('#' + $(this).attr('id') + ' a').attr('href'),
       id: '#' + $(this).attr('id'),
       onload: function(response) {
-        if (response.status === 404) {
-          $(this.id).addClass('disabled');
-        }
         var status = JSON.parse(response.responseText);
-        updateClass(status, $(this.id))
-        var statusInWords = message(status) + '&nbsp;' + duration(status, this.id) + differentialTime(status.timestamp);
+        
+	updateClass(status, $(this.id))
+        
+	var statusInWords = message(status) + '&nbsp;' + duration(status, this.id) + differentialTime(status.timestamp);
         $(this.id + ' span.statusInWords').html(statusInWords);
+
         var changeSetComment = status.changeSet.items.length > 0 ? status.changeSet.items[0].comment : "Missing Comment!";
         $(this.id + " span.changeSetComment").html(changeSetComment.substring(0, 140));
+
         var claim = getClaimObject(status);
         if(claim)
         {
           $(this.id + " span.claim").html("Claimed by " + claim.claimedBy + " because " + claim.reason);
         }
+
         if(!claim) {
           $(this.id + " span.claim").css('display', 'hidden');
         }
+
+  	$(this.id + '.building').filter(':not(:animated)').effect("pulsate", {times: 1, opacity: 0.5}, 2000);
       }
     });
   });
