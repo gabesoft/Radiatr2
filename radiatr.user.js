@@ -53,8 +53,8 @@ $.effects.pulsate = function(o) {
 function refresh() {
   ping();
   hudson();
-  $('.status .building').filter(':not(:animated)').effect('pulsate', { times: 1, opacity: 0.5 }, 2000);
-  $('.status .buildingFailed').filter(':not(:animated)').effect('pulsate', { times: 1, opacity: 0.5 }, 2000);
+  $('.status.building').filter(':not(:animated)').effect('pulsate', { times: 1, opacity: 0.5 }, 2000);
+  $('.status.buildingFailed').filter(':not(:animated)').effect('pulsate', { times: 1, opacity: 0.5 }, 2000);
   setTimeout(refresh, 3000);
 }
 
