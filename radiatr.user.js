@@ -98,9 +98,14 @@ function hudson() {
       baseUrl: $('#' + $(this).attr('id') + ' a').attr('href'),
       id: '#' + $(this).attr('id'),
       onload: function(response) {
+
         var status = JSON.parse(response.responseText);
+
+	
+
+
 	if (self.buildable) {
-	  updateClass(status, $(this.id), wasFailed);
+	  updateClass(status, $(this.id), self.wasFailed);
 	}
 
 	var statusInWords = message(status) + '&nbsp;' + duration(status, this.id) + differentialTime(status.timestamp);
