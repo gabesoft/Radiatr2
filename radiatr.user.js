@@ -53,7 +53,6 @@ $.effects.pulsate = function(o) {
 function refresh() {
   ping();
   hudson();
-  hudsonFull();
   setTimeout(refresh, 3000);
 }
 
@@ -89,6 +88,9 @@ function getClaimObject(json) {
 
 function hudson() {
   $('.status').each(function () {
+    this.buildable = true;
+    var self = this;
+
     GM_xmlhttpRequest({
       method: 'GET',
       url: $('#' + $(this).attr('id') + ' a').attr('href') + '/lastBuild/api/json',
@@ -96,9 +98,10 @@ function hudson() {
       id: '#' + $(this).attr('id'),
       onload: function(response) {
         var status = JSON.parse(response.responseText);
-        
-	updateClass(status, $(this.id))
-        
+	if (self.buildable) {
+	  updateClass(status, $(this.id));
+	}
+
 	var statusInWords = message(status) + '&nbsp;' + duration(status, this.id) + differentialTime(status.timestamp);
         $(this.id + ' span.statusInWords').html(statusInWords);
 
@@ -118,20 +121,17 @@ function hudson() {
   	$(this.id + '.building').filter(':not(:animated)').effect("pulsate", {times: 1, opacity: 0.5}, 2000);
       }
     });
-  });
-}
-
-function hudsonFull() {
-  $('.status').each(function () {
     GM_xmlhttpRequest({
       method: 'GET',
-      url: $('#' + $(this).attr('id') + ' a').attr('href') + 'api/json',
+      url: $('#' + $(this).attr('id') + ' a').attr('href') + '/api/json',
       baseUrl: $('#' + $(this).attr('id') + ' a').attr('href'),
       id: '#' + $(this).attr('id'),
       onload: function(response) {
         var status = JSON.parse(response.responseText);
- 	
+	self.buildable = status.buildable;
+
 	if(!status.buildable) {
+	  $(this.id).removeClass('success');
 	  $(this.id).addClass('disabled');
 	}
  
@@ -173,6 +173,7 @@ function clearClasses(id, status) {
   id.removeClass('building').
      removeClass('failure').
      removeClass('success').
+     removeClass('disabled').
      removeClass('buildingFromFailedBuild');
 }
 

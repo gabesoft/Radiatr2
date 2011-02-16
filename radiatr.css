@@ -69,6 +69,10 @@ abbr {
   color:  grey;
 }
 
+.disabled a {
+  color:  grey;
+}
+
 .success {
   color:  #00AA00;
 }
