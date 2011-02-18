@@ -1,122 +1,142 @@
-    body {
-        background: #111111;
-        background:#111111 none repeat scroll 0% 0%;
-        font-family:Helvetica,Arial,sans-serif;
-        font-size:100px;
-        font-size-adjust:none;
-        font-stretch:normal;
-        font-style:normal;
-        font-variant:normal;
-        font-weight:normal;
-        letter-spacing:0px;
-        line-height:normal;
-        margin:0px 0px 0px 0px;
-    }
+body {
+  background:  #111111;
+  background: #111111 none repeat scroll 0% 0%;
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 100px;
+  font-size-adjust: none;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  letter-spacing: 0px;
+  line-height: normal;
+  margin: 0px 0px 0px 0px;
+}
 
-    .subject {
-        font-size:125px;
-        font-weight:bold;
-        font-family: Helvetica,Arial,sans-serif;
-        letter-spacing: -2px;
-        text-decoration: none;
-        padding-left: 20px;
-    }
+.subject {
+  font-size: 125px;
+  font-weight: bold;
+  font-family:  Helvetica,Arial,sans-serif;
+  letter-spacing:  -2px;
+  text-decoration:  none;
+  padding-left:  20px;
+}
 
-    .userFeedback .subject {
-        font-size:100px;
-    }
+#statuses .statusInWords {
+  font-size: 50px;
+  font-family:  Helvetica,Arial,sans-serif;
+  letter-spacing:  1px;
+  text-decoration:  none;
+  padding-left:  25px;
+}
 
-    #statuses .statusInWords {
-        font-size:50px;
-        font-family: Helvetica,Arial,sans-serif;
-        letter-spacing: 1px;
-        text-decoration: none;
-        padding-left: 25px;
-    }
+#statuses .changeSetComment {
+  font-size: 50px;
+  font-family:  Helvetica,Arial,sans-serif;
+  letter-spacing:  1px;
+  text-decoration:  none;
+  padding-left:  25px;
+  color:  white;
+}
 
-    #statuses .changeSetComment {
-        font-size:50px;
-        font-family: Helvetica,Arial,sans-serif;
-        letter-spacing: 1px;
-        text-decoration: none;
-        padding-left: 25px;
-	color: white;
-    }
+#statuses .statusDetails {
+  font-size: 25px;
+  font-family:  Helvetica,Arial,sans-serif;
+  letter-spacing:  1px;
+  text-decoration:  none;
+  padding-left:  25px;
+}
 
-    #statuses .statusDetails {
-        font-size:25px;
-        font-family: Helvetica,Arial,sans-serif;
-        letter-spacing: 1px;
-        text-decoration: none;
-        padding-left: 25px;
-    }
+#statuses {
+  left: 0pt;
+  position: absolute;
+  top: 0px;
+  width: 1600px;
+  z-index: 99;
+}
 
-    #statuses {
-        left:0pt;
-        position:absolute;
-        top:0px;
-        width:1280px;
-        z-index:99;
-    }
+div.status {
+  padding-top:  0px;
+  padding-bottom:  0px;
+  border-bottom:  4px dotted #333333;
+}
 
-    div.status {
-	padding-top: 0px;
-	padding-bottom: 0px;
-	border-bottom: 4px dotted #333333;
-    }
-    abbr {
-        border-bottom:none;
-    }
+abbr {
+  border-bottom:  none;
+}
 
-    .disabled a {
-	color: #666666;
-    }
+.disabled {
+  color:  grey;
+}
 
-    .success {
-        color: #00AA00;
-    }
+.disabled a {
+  color:  grey;
+}
 
-    .success .subject {
-        color: #00FF00;
-    }
-    .success .statusDetails {
-        color: #008800;
-    }
+.success {
+  color:  #00AA00;
+}
 
-    .failure {
-        color: #AA0000;
-    }
-    .failure a {
-        color: #FF0000;
-    }
-    .failure .statusDetails {
-        color: #880000;
-    }
-	
-	.healthScore {
-		color: white;
-		float: right;
-		padding-right: 5px;
-		
-		
-	}
+.success .subject {
+  color:  #00FF00;
+}
 
-    .building {
-       
-    }
-    .building a {
-      
-    }
-    .building .statusDetails {
-    
-    }
-    .buildingFromFailedBuild {
-  
-    }
-    .logo {
-    }
-    .claim 
-    {
-       background: #FFFF00;
-       color: black;
-    }
+.success .statusDetails {
+  color:  #008800;
+}
+
+.failure {
+  color:  #AA0000;
+}
+
+.failure a {
+  color:  #FF0000;
+}
+
+.failure .statusDetails {
+  color:  #880000;
+}
+
+.building {   
+  color:  yellow;
+}
+
+.building .subject{
+  color:  yellow;
+}
+
+.building a {
+  color:  yellow;
+}
+
+.buildingFailed {   
+  color:  orange;
+}
+
+.buildingFailed .subject{
+  color:  orange;
+}
+
+.buildingFailed a {
+  color:  orange;
+}
+
+.building .statusDetails {
+}
+
+.buildingFromFailedBuild {
+}
+
+.healthScore {
+	color:  white;
+	float:  right;
+	padding-right:  5px;
+}
+
+.logo {
+}
+
+.claim {
+  background:  #FFFF00;
+  color:  black;
+}
