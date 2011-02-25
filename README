@@ -29,3 +29,5 @@ Your html should be formatted as follows:
 	</body>
 </html>
 
+To contribute you may download this code and submit pull requests. 
+To facilitate testing a simple sinatra test server has been added (test_server.rb) which requires you to have rubygems sinatra and json installed.

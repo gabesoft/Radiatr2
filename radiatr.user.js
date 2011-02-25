@@ -65,18 +65,21 @@ function ping() {
       url: $('#' + $(this).attr('id') + ' a').attr('href'),
       id: $(this).attr('id'),
       onload: function(response) {
-        if (response.status == 200) {
-          $('#' + this.id).addClass('success').removeClass('failure');
-          $('#' + this.id + ' span.statusInWords').text('is Online');
-        }
-        else {
-          $('#' + this.id).addClass('disabled').removeClass('success');
-          $('#' + this.id + ' span.statusInWords').text('is Offline');
-        }
-      }
+        if (response.status == 200)
+					this.markSuccess();
+				else
+					this.markDisabled();
+      },
+			markSuccess: function(){
+        $('#' + this.id).addClass('success').removeClass('failure');
+        $('#' + this.id + ' span.statusInWords').text('is Online');				
+			},
+			markDisabled: function(){
+				$('#' + this.id).addClass('disabled').removeClass('success');
+        $('#' + this.id + ' span.statusInWords').text('is Offline');        
+			}
     });
-   }
-  );
+  });
 }
  
 function getClaimObject(json) {
@@ -89,69 +92,39 @@ function getClaimObject(json) {
 }
 
 function hudson() {
-  $('.status').each(function () {
+  $('.hudson').each(function () {
     this.buildable = true;
     this.wasFailed = false;
     var self = this;
-
+		var url = $('#' + $(this).attr('id') + ' a').attr('href') + '/lastBuild/api/json';
+		
     GM_xmlhttpRequest({
       method: 'GET',
-      url: $('#' + $(this).attr('id') + ' a').attr('href') + '/lastBuild/api/json',
+      url: url,
       baseUrl: $('#' + $(this).attr('id') + ' a').attr('href'),
       id: '#' + $(this).attr('id'),
       onload: function(response) {
+			  var status = JSON.parse(response.responseText).actions[0];
+				
+				clearClasses($(this.id), status);
+			  $(this.id).addClass(classToUpdate(status));
+				var statusInWords = message(status) + '&nbsp;' + duration(status, this.id) + differentialTime(status.timestamp);
+			  $(this.id + ' span.statusInWords').html(statusInWords);
 
-        var status = JSON.parse(response.responseText);
+			  var changeSetComment = status.changeSet.items.length > 0 ? status.changeSet.items[0].comment : "Missing Comment!";
+			  $(this.id + " span.changeSetComment").html(changeSetComment.substring(0, 140));
 
-	
+			  var claim = getClaimObject(status);
+			  if(claim) {
+			    $(this.id + " span.claim").html("Claimed by " + claim.claimedBy + " because " + claim.reason);
+			  }
 
-
-	if (self.buildable) {
-	  updateClass(status, $(this.id), self.wasFailed);
-	}
-
-	var statusInWords = message(status) + '&nbsp;' + duration(status, this.id) + differentialTime(status.timestamp);
-        $(this.id + ' span.statusInWords').html(statusInWords);
-
-        var changeSetComment = status.changeSet.items.length > 0 ? status.changeSet.items[0].comment : "Missing Comment!";
-        $(this.id + " span.changeSetComment").html(changeSetComment.substring(0, 140));
-
-        var claim = getClaimObject(status);
-        if(claim)
-        {
-          $(this.id + " span.claim").html("Claimed by " + claim.claimedBy + " because " + claim.reason);
-        }
-
-        if(!claim) {
-          $(this.id + " span.claim").css('display', 'hidden');
-        }
+			  if(!claim) {
+			    $(this.id + " span.claim").css('display', 'hidden');
+			  }	
       }
     });
-    GM_xmlhttpRequest({
-      method: 'GET',
-      url: $('#' + $(this).attr('id') + ' a').attr('href') + '/api/json',
-      baseUrl: $('#' + $(this).attr('id') + ' a').attr('href'),
-      id: '#' + $(this).attr('id'),
-      onload: function(response) {
-        var status = JSON.parse(response.responseText);
-	self.buildable = status.buildable;
 
-	if(!status.buildable) {
-	  $(this.id).removeClass('success');
-	  $(this.id).addClass('disabled');
-	}
-
-	if(status.lastSuccessfulBuild.number < status.lastUnsuccessfulBuild.number) {
-	  self.wasFailed = true;
-	}
- 
- 	if(status.healthReport) {
-          $(this.id + ' span.healthScore').html( status.healthReport[0].score );
-          $(this.id + ' span.healthScore').css("opacity", (status.healthReport[0].score / 100 ));
-          $(this.id + ' span.healthScore').css("font-size", $(this.id + ' span.statusInWords').css("font-size") );
-        }
-      }
-    });
   });
 }
 

@@ -1,20 +1,23 @@
 <html>
-  <link rel="stylesheet" rev="stylesheet" href="radiatr.css" media="screen">
-  <link rel="stylesheet" rev="stylesheet" href="smiley.css" media="screen">
   <head>
     <title>Build Dashboard Radiator - Examples</title>
+    <link rel="stylesheet" rev="stylesheet" href="radiatr.css" media="screen">
+    <link rel="stylesheet" rev="stylesheet" href="smiley.css" media="screen">
   </head>
   <body>
+    <div id="responseText">
+      
+    </div>
     <div id="statuses">
-    	<div id="build1" class="status success">
-        <span><a class="subject success" href="http://hudsonbuild">Build 1</a></span>
+    	<div id="build1" class="status hudson">
+        <span><a class="subject success" href="http://localhost:4567">Test Build with Time</a></span>
         <br/>
         <span class="statusInWords success">status 1</span><br/>
     	  <span class="changeSetComment success">comment 1</span><br/>
         <span class="claim"></span>
       </div>
 	
-    	<div id="build2" class="status failure">
+    	<div id="build2" class="status hudson">
         <span><a class="subject failure" href="http://hudsonbuild">Build 2</a></span>
         <br/>
         <span class="statusInWords failure">status 1</span><br/>
@@ -22,7 +25,7 @@
         <span class="claim"></span>
       </div>	
 	
-    	<div id="build3" class="status building">
+    	<div id="build3" class="status hudson">
         <span><a class="subject building" href="http://hudsonbuild">Build 3</a></span>
         <br/>
         <span class="statusInWords building">status 1</span><br/>
@@ -30,7 +33,7 @@
         <span class="claim"></span>
       </div>	
 	
-    	<div id="build4" class="status disabled">
+    	<div id="build4" class="status hudson">
         <span><a class="subject disabled" href="http://hudsonbuild">Build 4</a></span>
         <br/>
         <span class="statusInWords disabled">status 1</span><br/>
@@ -38,13 +41,13 @@
         <span class="claim"></span>
     	</div>   
 	
-    	<div id="build_without_comments" class="status success">
+    	<div id="build_without_comments" class="status hudson">
         <span><a class="subject success" href="http://hudsonbuild">Build without comments</a></span>
         <br/>
         <span class="statusInWords success">status 1</span><br/>
       </div>
     
-    	<div id="build5" class="status failure">
+    	<div id="build5" class="status hudson">
         <span><a class="subject failure" href="http://hudsonbuild">Build 5</a></span>
         <br/>
         <span class="statusInWords failure">status 1</span><br/>

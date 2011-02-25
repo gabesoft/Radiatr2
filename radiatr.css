@@ -61,6 +61,10 @@ div.status {
   border-bottom:  4px dotted #333333;
 }
 
+div.responseText {
+  color: red;
+}
+
 abbr {
   border-bottom:  none;
 }
