@@ -65,10 +65,14 @@ function ping() {
       url: $('#' + $(this).attr('id') + ' a').attr('href'),
       id: $(this).attr('id'),
       onload: function(response) {
-        if (response.status == 200)
+	
+        if (response.status == 200){
 					this.markSuccess();
-				else
+				}
+				else{
+					alert("what is status " + response.status );
 					this.markDisabled();
+				}
       },
 			markSuccess: function(){
         $('#' + this.id).addClass('success').removeClass('failure');
@@ -104,11 +108,11 @@ function hudson() {
       baseUrl: $('#' + $(this).attr('id') + ' a').attr('href'),
       id: '#' + $(this).attr('id'),
       onload: function(response) {
-			  var status = JSON.parse(response.responseText).actions[0];
+			  var status = JSON.parse(response.responseText);
 				
 				clearClasses($(this.id), status);
 			  $(this.id).addClass(classToUpdate(status));
-				var statusInWords = message(status) + '&nbsp;' + duration(status, this.id) + differentialTime(status.timestamp);
+				var statusInWords = message(status) + '&nbsp;' + timeDuration(status, this.id) + differentialTime(status.timestamp);
 			  $(this.id + ' span.statusInWords').html(statusInWords);
 
 			  var changeSetComment = status.changeSet.items.length > 0 ? status.changeSet.items[0].comment : "Missing Comment!";
@@ -151,6 +155,9 @@ function appendBuildingFailed(id) {
 }
 
 function classToUpdate(status, url) {
+	if (status.building) {
+      return 'building';
+  }
   if (isSuccess(status)) {
     return 'success';
   } else {
@@ -191,7 +198,7 @@ function numberOfFailures(status) {
   return failCount;
 }
 
-function duration(status, idPrefix) {
+function timeDuration(status, idPrefix) {
   if (status.building) {
     return '';
   }
