@@ -128,6 +128,23 @@ function hudson() {
       }
     });
 
+    GM_xmlhttpRequest({
+      method: 'GET',
+      url: $('#' + $(this).attr('id') + ' a').attr('href') + '/api/json',
+      baseUrl: $('#' + $(this).attr('id') + ' a').attr('href'),
+      id: '#' + $(this).attr('id'),
+      onload: function(response) {
+        var status = JSON.parse(response.responseText);
+        self.buildable = status.buildable;
+        if(!status.buildable){
+          $(this.id).removeClass('success');
+          $(this.id).addClass('disabled');
+        }
+        if(status.lastSuccessfulBuild.number < status.lastUnsuccessfulBuild.number) {
+          self.wasFailed = true;
+        }
+      }
+    });
   });
 }
 
