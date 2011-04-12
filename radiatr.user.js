@@ -70,7 +70,6 @@ function ping() {
 					this.markSuccess();
 				}
 				else{
-					alert("what is status " + response.status );
 					this.markDisabled();
 				}
       },
