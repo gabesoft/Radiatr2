@@ -122,28 +122,33 @@ function currentBuildStatus(page) {
     id: id,
     onload: function(response) {
 		  var status = JSON.parse(response.responseText);
-		
-			clearClasses($(this.id), status);
-		  $(this.id).addClass(classToUpdate(status));
-		
-			var statusInWords = message(status) + '&nbsp;' + timeDuration(status, this.id) + differentialTime(status.timestamp);
-		  $(this.id + ' span.statusInWords').html(statusInWords);
-
-		  var changeSetComment = status.changeSet.items.length > 0 ? status.changeSet.items[0].comment : "Missing Comment!";
-		  $(this.id + " span.changeSetComment").html(changeSetComment.substring(0, 140));
-
-		  var claim = getClaimObject(status);
-		  if(claim) {
-		    $(this.id + " span.claim").html("Claimed by " + claim.claimedBy + " because " + claim.reason);
-		  }
-
-		  if(!claim) {
-		    $(this.id + " span.claim").css('display', 'hidden');
-		  }	
+			updateDashboard(this.id, status);
     }
   });
 	
 }
+
+function updateDashboard(id, status){
+	clearClasses($(id), status);
+  $(id).addClass(classToUpdate(status));
+
+	var statusInWords = message(status) + '&nbsp;' + timeDuration(status, id) + differentialTime(status.timestamp);
+  $(id + ' span.statusInWords').html(statusInWords);
+
+  var changeSetComment = status.changeSet.items.length > 0 ? status.changeSet.items[0].comment : "Missing Comment!";
+  $(id + " span.changeSetComment").html(changeSetComment.substring(0, 140));
+
+  var claim = getClaimObject(status);
+	var claimInfo = $(id + " span.claim");
+  if(claim) {
+    claimInfo.html("Claimed by " + claim.claimedBy + " because " + claim.reason);
+		claimInfo.show();
+  } else {
+    claimInfo.hide();
+  }	
+	
+}
+
 
 function lastBuildStatus(page) {
 	var self = page;
@@ -182,9 +187,6 @@ function updateClass(status, id, wasFailed) {
     }
     return;
   }
-  clearClasses(id, status);
-  id.addClass(classToUpdate(status));
-  return;
 }
 
 function classToUpdate(status, url) {
