@@ -63,19 +63,10 @@ function hudson() {
     this.buildable = true;
     this.wasFailed = false;
 		var page = this;
+		
 		currentBuildStatus(page);
 		lastBuildStatus(page);
   });
-}
-
- 
-function getClaimObject(json) {
-  for(var i = 0, n = json.actions.length; i < n; i++) {
-   if(json.actions[i].claimed) {
-     return json.actions[i];
-   }
-  }
-  return null;
 }
 
 function currentBuildStatus(page) {
@@ -114,9 +105,16 @@ function updateDashboard(id, status){
   } else {
     claimInfo.hide();
   }	
-	
 }
 
+function getClaimObject(json) {
+  for(var i = 0, n = json.actions.length; i < n; i++) {
+   if(json.actions[i].claimed) {
+     return json.actions[i];
+   }
+  }
+  return null;
+}
 
 function lastBuildStatus(page) {
 	var self = page;
@@ -133,8 +131,7 @@ function lastBuildStatus(page) {
       var status = JSON.parse(response.responseText);
       self.buildable = status.buildable;
       if(!status.buildable){
-        $(this.id).removeClass('success');
-        $(this.id).addClass('disabled');
+				markDisabled($(this.id));
       }
       if(status.lastSuccessfulBuild.number < status.lastUnsuccessfulBuild.number) {
         self.wasFailed = true;
@@ -143,6 +140,16 @@ function lastBuildStatus(page) {
     }
   });
   
+}
+
+function markDisabled(id){
+  id.removeClass('success');
+  id.removeClass('failure');
+  id.removeClass('building');
+  id.removeClass('buildingFailed');
+    
+  id.addClass('disabled');
+	
 }
 
 function updateClass(status, id, wasFailed) {

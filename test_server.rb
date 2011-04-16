@@ -12,3 +12,8 @@ get '/api/json' do
   response = {"buildable"=> true, "lastSuccessfulBuild"=> {"number" => 763}, "lastUnsuccessfulBuild" => {"number" =>  764}}
   response.to_json
 end
+
+not_found do  
+  status 404  
+  'not found'  
+end
