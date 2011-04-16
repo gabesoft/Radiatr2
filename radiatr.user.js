@@ -52,42 +52,10 @@ $.effects.pulsate = function(o) {
 
 
 function refresh() {
-  ping();
   hudson();
   $('.status.building').filter(':not(:animated)').effect('pulsate', { times: 1, opacity: 0.5 }, 2000);
   $('.status.buildingFailed').filter(':not(:animated)').effect('pulsate', { times: 1, opacity: 0.5 }, 2000);
   setTimeout(refresh, 3000);
-}
-
-function ping() {
-  $('.ping').each(function () {
-		var id = '#' + $(this).attr('id');
-    var url = $('#' + $(this).attr('id') + ' a').attr('href');
-
-    GM_xmlhttpRequest({
-      method: 'GET',
-      url: url,
-
-      id: id,
-      onload: function(response) {
-	
-        if (response.status == 200){
-					this.markSuccess();
-				}
-				else{
-					this.markDisabled();
-				}
-      },
-			markSuccess: function(){
-        $(this.id).addClass('success').removeClass('failure');
-        $(this.id + ' span.statusInWords').text('is Online');				
-			},
-			markDisabled: function(){
-				$(this.id).addClass('disabled').removeClass('success');
-        $(this.id + ' span.statusInWords').text('is Offline');        
-			}
-    });
-  });
 }
 
 function hudson() {
