@@ -16,23 +16,24 @@ refresh();
 $.effects.pulsate = function(o) {
 	return this.queue(function() {
 		var elem = $(this),
-			mode = $.effects.setMode(elem, o.options.mode || 'show');
-			times = ((o.options.times || 5) * 2) - 1;
+			mode = $.effects.setMode(elem, o.options.mode || 'show'),
+			times = ((o.options.times || 5) * 2) - 1,
 			duration = o.duration ? o.duration / 2 : $.fx.speeds._default / 2,
 			isVisible = elem.is(':visible'),
 			opacity = o.options.opacity || 0,
-			animateTo = 0;
+			animateTo = 0,
+			i = 0;
 
 		if (!isVisible) {
 			elem.css('opacity', opacity).show();
 			animateTo = 1;
 		}
 
-		if ((mode == 'hide' && isVisible) || (mode == 'show' && !isVisible)) {
+		if ((mode === 'hide' && isVisible) || (mode === 'show' && !isVisible)) {
 			times--;
 		}
 
-		for (var i = 0; i < times; i++) {
+		for (i = 0; i < times; i++) {
 			elem.animate({ opacity: animateTo === 1 ? 1 : opacity }, duration, o.options.easing);
 			animateTo = (animateTo + 1) % 2;
 		}
@@ -51,6 +52,7 @@ $.effects.pulsate = function(o) {
 
 
 function refresh() {
+	alert("refreshing dashboard");
   ping();
   hudson();
   $('.status.building').filter(':not(:animated)').effect('pulsate', { times: 1, opacity: 0.5 }, 2000);
@@ -98,54 +100,70 @@ function hudson() {
   $('.hudson').each(function () {
     this.buildable = true;
     this.wasFailed = false;
-    var self = this;
-		var url = $('#' + $(this).attr('id') + ' a').attr('href') + '/lastBuild/api/json';
 		
-    GM_xmlhttpRequest({
-      method: 'GET',
-      url: url,
-      baseUrl: $('#' + $(this).attr('id') + ' a').attr('href'),
-      id: '#' + $(this).attr('id'),
-      onload: function(response) {
-			  var status = JSON.parse(response.responseText);
-				
-				clearClasses($(this.id), status);
-			  $(this.id).addClass(classToUpdate(status));
-				var statusInWords = message(status) + '&nbsp;' + timeDuration(status, this.id) + differentialTime(status.timestamp);
-			  $(this.id + ' span.statusInWords').html(statusInWords);
-
-			  var changeSetComment = status.changeSet.items.length > 0 ? status.changeSet.items[0].comment : "Missing Comment!";
-			  $(this.id + " span.changeSetComment").html(changeSetComment.substring(0, 140));
-
-			  var claim = getClaimObject(status);
-			  if(claim) {
-			    $(this.id + " span.claim").html("Claimed by " + claim.claimedBy + " because " + claim.reason);
-			  }
-
-			  if(!claim) {
-			    $(this.id + " span.claim").css('display', 'hidden');
-			  }	
-      }
-    });
-
-    GM_xmlhttpRequest({
-      method: 'GET',
-      url: $('#' + $(this).attr('id') + ' a').attr('href') + '/api/json',
-      baseUrl: $('#' + $(this).attr('id') + ' a').attr('href'),
-      id: '#' + $(this).attr('id'),
-      onload: function(response) {
-        var status = JSON.parse(response.responseText);
-        self.buildable = status.buildable;
-        if(!status.buildable){
-          $(this.id).removeClass('success');
-          $(this.id).addClass('disabled');
-        }
-        if(status.lastSuccessfulBuild.number < status.lastUnsuccessfulBuild.number) {
-          self.wasFailed = true;
-        }
-      }
-    });
+		currentBuildStatus(this);
+		lastBuildStatus(this);
   });
+}
+
+function currentBuildStatus(this) {
+	var url = $('#' + $(this).attr('id') + ' a').attr('href') + '/lastBuild/api/json';
+  var self = this;
+	alert("calling current buildstatus");
+  GM_xmlhttpRequest({
+    method: 'GET',
+    url: url,
+    baseUrl: $('#' + $(this).attr('id') + ' a').attr('href'),
+    id: '#' + $(this).attr('id'),
+    onload: function(response) {
+		  var status = JSON.parse(response.responseText);
+			
+			clearClasses($(this.id), status);
+		  $(this.id).addClass(classToUpdate(status));
+			var statusInWords = message(status) + '&nbsp;' + timeDuration(status, this.id) + differentialTime(status.timestamp);
+		  $(this.id + ' span.statusInWords').html(statusInWords);
+
+		  var changeSetComment = status.changeSet.items.length > 0 ? status.changeSet.items[0].comment : "Missing Comment!";
+		  $(this.id + " span.changeSetComment").html(changeSetComment.substring(0, 140));
+
+		  var claim = getClaimObject(status);
+		  if(claim) {
+		    $(this.id + " span.claim").html("Claimed by " + claim.claimedBy + " because " + claim.reason);
+		  }
+
+		  if(!claim) {
+		    $(this.id + " span.claim").css('display', 'hidden');
+		  }	
+    }
+  });
+	
+}
+
+function lastBuildStatus(this) {
+	var self = this;
+  var url = $('#' + $(this).attr('id') + ' a').attr('href') + '/api/json';
+	alert("calling last buildstatus");
+
+	GM_xmlhttpRequest({
+    method: 'GET',
+    url: url,
+    baseUrl: $('#' + $(this).attr('id') + ' a').attr('href'),
+    id: '#' + $(this).attr('id'),
+    onload: function(response) {
+      var status = JSON.parse(response.responseText);
+      self.buildable = status.buildable;
+			alert("buildable is " + status.buildable);
+      if(!status.buildable){
+        $(this.id).removeClass('success');
+        $(this.id).addClass('disabled');
+      }
+      if(status.lastSuccessfulBuild.number < status.lastUnsuccessfulBuild.number) {
+				alert("last build failed");
+        self.wasFailed = true;
+      }
+    }
+  });
+  
 }
 
 function updateClass(status, id, wasFailed) {
