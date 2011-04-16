@@ -56,29 +56,29 @@ body {
 }
 
 .status {
-  padding-top:  0px;
+  padding-top: 0px;
   padding-bottom:  0px;
   border-bottom:  4px dotted #333333;
 }
 
 .disabled, .disabled a {
-  color:  grey;
+  color: grey;
 }
 
 .success, .success a{
-  color:  #00AA00;
+  color: #00AA00;
 }
 
 .failure, .failure a {
-  color:  #AA0000;
+  color: #AA0000;
 }
 
 .building, .building a {   
-  color:  yellow;
+  color: yellow;
 }
 
 .buildingFailed, .buildingFailed a{   
-  color:  orange;
+  color: orange;
 }
 
 .claim {

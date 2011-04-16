@@ -1,8 +1,7 @@
 /* 'smiley' theme styles */
 
 div.success{
-/*  background: -moz-linear-gradient(right, #E0E0E0, #404040) ;*/
-  background: url(images/ShinySmileyFacesWin/happy.png) no-repeat 1400px 25px;
+  background: url(images/ShinySmileyFacesWin/cha-ching.png) no-repeat 1400px 25px;
   color: #00FF00;  
 }
 
@@ -27,12 +26,12 @@ div.failure{
   color: #880000;
 }
 
-div.building{
+div.building {
   background: url(images/ShinySmileyFacesWin/cool.png) no-repeat 1400px 25px;
   color: yellow;
 }
 
-.building .subject{
+.building .subject {
   color: yellow;
 }
 
@@ -41,6 +40,10 @@ div.building{
 }
 
 .building .statusDetails {
+}
+
+.buildingFailed {
+  background: url(images/ShinySmileyFacesWin/nervous.png) no-repeat 1400px 25px;  
 }
 
 div.disabled{
