@@ -173,8 +173,7 @@ function clearClasses(id, status) {
      removeClass('failure').
      removeClass('success').
      removeClass('disabled').
-     removeClass('buildingFailed').
-     removeClass('buildingFromFailedBuild');
+     removeClass('buildingFailed');
 }
 
 function isSuccess(status) {
