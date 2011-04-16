@@ -52,7 +52,6 @@ $.effects.pulsate = function(o) {
 
 
 function refresh() {
-	alert("refreshing dashboard");
   ping();
   hudson();
   $('.status.building').filter(':not(:animated)').effect('pulsate', { times: 1, opacity: 0.5 }, 2000);
@@ -62,10 +61,14 @@ function refresh() {
 
 function ping() {
   $('.ping').each(function () {
+		var id = '#' + $(this).attr('id');
+    var url = $('#' + $(this).attr('id') + ' a').attr('href');
+
     GM_xmlhttpRequest({
       method: 'GET',
-      url: $('#' + $(this).attr('id') + ' a').attr('href'),
-      id: $(this).attr('id'),
+      url: url,
+
+      id: id,
       onload: function(response) {
 	
         if (response.status == 200){
@@ -76,16 +79,27 @@ function ping() {
 				}
       },
 			markSuccess: function(){
-        $('#' + this.id).addClass('success').removeClass('failure');
-        $('#' + this.id + ' span.statusInWords').text('is Online');				
+        $(this.id).addClass('success').removeClass('failure');
+        $(this.id + ' span.statusInWords').text('is Online');				
 			},
 			markDisabled: function(){
-				$('#' + this.id).addClass('disabled').removeClass('success');
-        $('#' + this.id + ' span.statusInWords').text('is Offline');        
+				$(this.id).addClass('disabled').removeClass('success');
+        $(this.id + ' span.statusInWords').text('is Offline');        
 			}
     });
   });
 }
+
+function hudson() {
+  $('.hudson').each(function () {
+    this.buildable = true;
+    this.wasFailed = false;
+		var page = this;
+		currentBuildStatus(page);
+		lastBuildStatus(page);
+  });
+}
+
  
 function getClaimObject(json) {
   for(var i = 0, n = json.actions.length; i < n; i++) {
@@ -96,30 +110,22 @@ function getClaimObject(json) {
   return null;
 }
 
-function hudson() {
-  $('.hudson').each(function () {
-    this.buildable = true;
-    this.wasFailed = false;
-		
-		currentBuildStatus(this);
-		lastBuildStatus(this);
-  });
-}
-
-function currentBuildStatus(this) {
-	var url = $('#' + $(this).attr('id') + ' a').attr('href') + '/lastBuild/api/json';
-  var self = this;
-	alert("calling current buildstatus");
+function currentBuildStatus(page) {
+	var baseUrl = $('#' + $(page).attr('id') + ' a').attr('href');
+	var url = baseUrl + '/lastBuild/api/json';
+	var id = '#' + $(page).attr('id');
+	
   GM_xmlhttpRequest({
     method: 'GET',
     url: url,
-    baseUrl: $('#' + $(this).attr('id') + ' a').attr('href'),
-    id: '#' + $(this).attr('id'),
+    baseUrl: baseUrl,
+    id: id,
     onload: function(response) {
 		  var status = JSON.parse(response.responseText);
-			
+		
 			clearClasses($(this.id), status);
 		  $(this.id).addClass(classToUpdate(status));
+		
 			var statusInWords = message(status) + '&nbsp;' + timeDuration(status, this.id) + differentialTime(status.timestamp);
 		  $(this.id + ' span.statusInWords').html(statusInWords);
 
@@ -139,27 +145,27 @@ function currentBuildStatus(this) {
 	
 }
 
-function lastBuildStatus(this) {
-	var self = this;
-  var url = $('#' + $(this).attr('id') + ' a').attr('href') + '/api/json';
-	alert("calling last buildstatus");
+function lastBuildStatus(page) {
+	var self = page;
+	var baseUrl = $('#' + $(page).attr('id') + ' a').attr('href');
+  var url = baseUrl + '/api/json';
+  var id = '#' + $(page).attr('id');
 
 	GM_xmlhttpRequest({
     method: 'GET',
     url: url,
-    baseUrl: $('#' + $(this).attr('id') + ' a').attr('href'),
-    id: '#' + $(this).attr('id'),
+    baseUrl: baseUrl,
+    id: id,
     onload: function(response) {
       var status = JSON.parse(response.responseText);
       self.buildable = status.buildable;
-			alert("buildable is " + status.buildable);
       if(!status.buildable){
         $(this.id).removeClass('success');
         $(this.id).addClass('disabled');
       }
       if(status.lastSuccessfulBuild.number < status.lastUnsuccessfulBuild.number) {
-				alert("last build failed");
         self.wasFailed = true;
+				updateClass(status, $(this.id), self.wasFailed);
       }
     }
   });
@@ -167,30 +173,23 @@ function lastBuildStatus(this) {
 }
 
 function updateClass(status, id, wasFailed) {
-  if (status.building) {
+  if (status.buildable) {
     if(!id.hasClass('building') && !wasFailed) {
-      appendBuilding(id);
-    } else if (!id.hasClass('building') && wasFailed) {
-      appendBuildingFailed(id);
+		  id.addClass('building');
+    } else if (id.hasClass('building') && wasFailed) {
+			id.removeClass('building');
+		  id.addClass('buildingFailed');
     }
     return;
   }
   clearClasses(id, status);
-  id.addClass(classToUpdate(status)); 
+  id.addClass(classToUpdate(status));
   return;
-}
-
-function appendBuilding(id) {
-  id.addClass('building');
-}
-
-function appendBuildingFailed(id) {
-  id.addClass('buildingFailed');
 }
 
 function classToUpdate(status, url) {
 	if (status.building) {
-      return 'building';
+    return 'building';
   }
   if (isSuccess(status)) {
     return 'success';
