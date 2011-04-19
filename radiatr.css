@@ -77,7 +77,7 @@ body {
   color: yellow;
 }
 
-.buildingFailed, .buildingFailed a{   
+.buildingFromFailed, .buildingFromFailed a{   
   color: orange;
 }
 

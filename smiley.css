@@ -42,7 +42,7 @@ div.building {
 .building .statusDetails {
 }
 
-.buildingFailed {
+.buildingFromFailed {
   background: url(images/ShinySmileyFacesWin/nervous.png) no-repeat 1400px 25px;  
 }
 
