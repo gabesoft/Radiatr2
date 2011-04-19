@@ -54,7 +54,7 @@ $.effects.pulsate = function(o) {
 function refresh() {
   hudson();
   $('.status.building').filter(':not(:animated)').effect('pulsate', { times: 1, opacity: 0.5 }, 2000);
-  $('.status.buildingFailed').filter(':not(:animated)').effect('pulsate', { times: 1, opacity: 0.5 }, 2000);
+  $('.status.buildingFromFailed').filter(':not(:animated)').effect('pulsate', { times: 1, opacity: 0.5 }, 2000);
   setTimeout(refresh, 3000);
 }
 
@@ -146,7 +146,7 @@ function markDisabled(id){
   id.removeClass('success');
   id.removeClass('failure');
   id.removeClass('building');
-  id.removeClass('buildingFailed');
+  id.removeClass('buildingFromFailed');
     
   id.addClass('disabled');
 	
@@ -158,7 +158,7 @@ function updateClass(status, id, wasFailed) {
 		  id.addClass('building');
     } else if (id.hasClass('building') && wasFailed) {
 			id.removeClass('building');
-		  id.addClass('buildingFailed');
+		  id.addClass('buildingFromFailed');
     }
     return;
   }
@@ -180,7 +180,7 @@ function clearClasses(id, status) {
      removeClass('failure').
      removeClass('success').
      removeClass('disabled').
-     removeClass('buildingFailed');
+     removeClass('buildingFromFailed');
 }
 
 function isSuccess(status) {
