@@ -65,7 +65,7 @@ function hudson() {
 		var build = this;
 		
 		currentBuildStatus(build);
-		lastBuildStatus(build);
+/*		lastBuildStatus(build);*/
   });
 }
 
@@ -82,6 +82,7 @@ function currentBuildStatus(build) {
     onload: function(response) {
 		  var status = JSON.parse(response.responseText);
 			jQuery.extend(build, updateDashboard(this.id, status));
+			lastBuildStatus(build);
     }
   });
 	
@@ -90,9 +91,9 @@ function currentBuildStatus(build) {
 function updateDashboard(id, status){
 	clearClasses($(id), status);
   $(id).addClass(classToUpdate(status));
-
+	
 	var build = new Object();
-
+	build.status = classToUpdate(status);
 	build.statusInWords = message(status) + '&nbsp;' + timeDuration(status, id) + differentialTime(status.timestamp);
   $(id + ' span.statusInWords').html(build.statusInWords);
 
@@ -127,11 +128,11 @@ function getClaim(json) {
   return null;
 }
 
-function lastBuildStatus(page) {
-	var self = page;
-	var baseUrl = $('#' + $(page).attr('id') + ' a').attr('href');
+function lastBuildStatus(build) {
+	var self = build;
+	var baseUrl = $('#' + $(build).attr('id') + ' a').attr('href');
   var url = baseUrl + '/api/json';
-  var id = '#' + $(page).attr('id');
+  var id = '#' + $(build).attr('id');
 
 	GM_xmlhttpRequest({
     method: 'GET',
@@ -142,9 +143,15 @@ function lastBuildStatus(page) {
       var status = JSON.parse(response.responseText);
       self.buildable = status.buildable;
       if(!status.buildable){
+				build.status = "disabled";
 				markDisabled($(this.id));
       }
       if(status.lastSuccessfulBuild.number < status.lastUnsuccessfulBuild.number) {
+				build.status = "buildingFromFailed";
+				
+				clearClasses($(this.id));
+				$(this.id).addClass(build.status);
+
         self.wasFailed = true;
 				updateClass(status, $(this.id), self.wasFailed);
       }
@@ -186,7 +193,7 @@ function classToUpdate(status, url) {
   }
 }
 
-function clearClasses(id, status) {
+function clearClasses(id) {
   id.removeClass('building').
      removeClass('failure').
      removeClass('success').
