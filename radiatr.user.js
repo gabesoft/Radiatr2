@@ -62,17 +62,17 @@ function hudson() {
   $('.hudson').each(function () {
     this.buildable = true;
     this.wasFailed = false;
-		var page = this;
+		var build = this;
 		
-		currentBuildStatus(page);
-		lastBuildStatus(page);
+		currentBuildStatus(build);
+		lastBuildStatus(build);
   });
 }
 
-function currentBuildStatus(page) {
-	var baseUrl = $('#' + $(page).attr('id') + ' a').attr('href');
+function currentBuildStatus(build) {
+	var baseUrl = $('#' + $(build).attr('id') + ' a').attr('href');
 	var url = baseUrl + '/lastBuild/api/json';
-	var id = '#' + $(page).attr('id');
+	var id = '#' + $(build).attr('id');
 	
   GM_xmlhttpRequest({
     method: 'GET',
@@ -81,7 +81,7 @@ function currentBuildStatus(page) {
     id: id,
     onload: function(response) {
 		  var status = JSON.parse(response.responseText);
-			updateDashboard(this.id, status);
+			jQuery.extend(build, updateDashboard(this.id, status));
     }
   });
 	
@@ -91,23 +91,34 @@ function updateDashboard(id, status){
 	clearClasses($(id), status);
   $(id).addClass(classToUpdate(status));
 
-	var statusInWords = message(status) + '&nbsp;' + timeDuration(status, id) + differentialTime(status.timestamp);
-  $(id + ' span.statusInWords').html(statusInWords);
+	var build = new Object();
+
+	build.statusInWords = message(status) + '&nbsp;' + timeDuration(status, id) + differentialTime(status.timestamp);
+  $(id + ' span.statusInWords').html(build.statusInWords);
 
   var changeSetComment = status.changeSet.items.length > 0 ? status.changeSet.items[0].comment : "Missing Comment!";
-  $(id + " span.changeSetComment").html(changeSetComment.substring(0, 140));
+	build.changeSetComment = changeSetComment.substring(0, 140);
+  $(id + " span.changeSetComment").html(build.changeSetComment);
 
-  var claim = getClaimObject(status);
+  var claim = getClaim(status);
 	var claimInfo = $(id + " span.claim");
+
   if(claim) {
-    claimInfo.html("Claimed by " + claim.claimedBy + " because " + claim.reason);
+		build.claim = new Object();
+
+		build.claim.claimedBy = claim.claimedBy;
+		build.claim.reason = claim.reason;
+
+    claimInfo.html("Claimed by " + build.claim.claimedBy + " because " + build.claim.reason);
 		claimInfo.show();
   } else {
     claimInfo.hide();
-  }	
+  }
+	return build;
+
 }
 
-function getClaimObject(json) {
+function getClaim(json) {
   for(var i = 0, n = json.actions.length; i < n; i++) {
    if(json.actions[i].claimed) {
      return json.actions[i];
