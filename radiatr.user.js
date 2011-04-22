@@ -65,7 +65,6 @@ function hudson() {
 		var build = this;
 		
 		currentBuildStatus(build);
-/*		lastBuildStatus(build);*/
   });
 }
 
@@ -89,31 +88,17 @@ function currentBuildStatus(build) {
 }
 
 function updateDashboard(id, status){
-	clearClasses($(id), status);
-  $(id).addClass(classToUpdate(status));
-	
 	var build = new Object();
 	build.status = classToUpdate(status);
 	build.statusInWords = message(status) + '&nbsp;' + timeDuration(status, id) + differentialTime(status.timestamp);
-  $(id + ' span.statusInWords').html(build.statusInWords);
-
   var changeSetComment = status.changeSet.items.length > 0 ? status.changeSet.items[0].comment : "Missing Comment!";
 	build.changeSetComment = changeSetComment.substring(0, 140);
-  $(id + " span.changeSetComment").html(build.changeSetComment);
 
   var claim = getClaim(status);
-	var claimInfo = $(id + " span.claim");
-
   if(claim) {
 		build.claim = new Object();
-
 		build.claim.claimedBy = claim.claimedBy;
 		build.claim.reason = claim.reason;
-
-    claimInfo.html("Claimed by " + build.claim.claimedBy + " because " + build.claim.reason);
-		claimInfo.show();
-  } else {
-    claimInfo.hide();
   }
 	return build;
 
@@ -148,13 +133,21 @@ function lastBuildStatus(build) {
       }
       if(status.lastSuccessfulBuild.number < status.lastUnsuccessfulBuild.number) {
 				build.status = "buildingFromFailed";
-				
+/*				markBuild(build);*/
 				clearClasses($(this.id));
 				$(this.id).addClass(build.status);
+				
+				$(this.id + ' span.statusInWords').html(build.statusInWords);
+			  $(this.id + " span.changeSetComment").html(build.changeSetComment);
 
-        self.wasFailed = true;
-				updateClass(status, $(this.id), self.wasFailed);
-      }
+				var claimInfo = $(this.id + " span.claim");
+				if(build.claim) {
+		    	claimInfo.html("Claimed by " + build.claim.claimedBy + " because " + build.claim.reason);
+					claimInfo.show();
+				}else {
+					claimInfo.hide();
+				}
+     }
     }
   });
   
