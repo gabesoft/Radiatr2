@@ -62,9 +62,7 @@ function hudson() {
   $('.hudson').each(function () {
     this.buildable = true;
     this.wasFailed = false;
-		var build = this;
-		
-		currentBuildStatus(build);
+		currentBuildStatus(this);
   });
 }
 
@@ -89,7 +87,7 @@ function currentBuildStatus(build) {
 
 function updateDashboard(id, status){
 	var build = new Object();
-	build.status = classToUpdate(status);
+	build.status = activity(status);
 	build.statusInWords = message(status) + '&nbsp;' + timeDuration(status, id) + differentialTime(status.timestamp);
   var changeSetComment = status.changeSet.items.length > 0 ? status.changeSet.items[0].comment : "Missing Comment!";
 	build.changeSetComment = changeSetComment.substring(0, 140);
@@ -133,24 +131,29 @@ function lastBuildStatus(build) {
       }
       if(status.lastSuccessfulBuild.number < status.lastUnsuccessfulBuild.number) {
 				build.status = "buildingFromFailed";
-/*				markBuild(build);*/
-				clearClasses($(this.id));
-				$(this.id).addClass(build.status);
-				
-				$(this.id + ' span.statusInWords').html(build.statusInWords);
-			  $(this.id + " span.changeSetComment").html(build.changeSetComment);
-
-				var claimInfo = $(this.id + " span.claim");
-				if(build.claim) {
-		    	claimInfo.html("Claimed by " + build.claim.claimedBy + " because " + build.claim.reason);
-					claimInfo.show();
-				}else {
-					claimInfo.hide();
-				}
+				markBuild(build);
      }
     }
   });
   
+}
+
+function markBuild(build){
+	var id = '#' + $(build).attr('id');
+	clearClasses($(id));
+	$(id).addClass(build.status);
+	
+	$(id + ' span.statusInWords').html(build.statusInWords);
+  $(id + " span.changeSetComment").html(build.changeSetComment);
+
+	var claimInfo = $(id + " span.claim");
+	if(build.claim) {
+  	claimInfo.html("Claimed by " + build.claim.claimedBy + " because " + build.claim.reason);
+		claimInfo.show();
+	}else {
+		claimInfo.hide();
+	}
+	
 }
 
 function markDisabled(id){
@@ -163,27 +166,11 @@ function markDisabled(id){
 	
 }
 
-function updateClass(status, id, wasFailed) {
-  if (status.buildable) {
-    if(!id.hasClass('building') && !wasFailed) {
-		  id.addClass('building');
-    } else if (id.hasClass('building') && wasFailed) {
-			id.removeClass('building');
-		  id.addClass('buildingFromFailed');
-    }
-    return;
-  }
-}
-
-function classToUpdate(status, url) {
+function activity(status) {
 	if (status.building) {
     return 'building';
   }
-  if (isSuccess(status)) {
-    return 'success';
-  } else {
-    return 'failure';
-  }
+  return status.result === 'SUCCESS' ? 'success' :'failure';
 }
 
 function clearClasses(id) {
@@ -192,10 +179,6 @@ function clearClasses(id) {
      removeClass('success').
      removeClass('disabled').
      removeClass('buildingFromFailed');
-}
-
-function isSuccess(status) {
-  return status.result === 'SUCCESS';
 }
 
 function message(status) {
