@@ -184,7 +184,7 @@ function clearClasses(id) {
 function message(status) {
   if (status.building) {
     return ' started building';
-  } else if (isSuccess(status)) {
+  } else if (status.result === 'SUCCESS') {
     return ' passed';
   } else {
     return numberOfFailures(status) + ' failed';
