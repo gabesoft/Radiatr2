@@ -128,11 +128,12 @@ function lastBuildStatus(build) {
       if(!status.buildable){
 				build.status = "disabled";
 				markDisabled($(this.id));
+      } else if(status.lastSuccessfulBuild.number < status.lastUnsuccessfulBuild.number) {	
+				if(build.status == 'building'){
+				 	build.status = "buildingFromFailed";
+				}
       }
-      if(status.lastSuccessfulBuild.number < status.lastUnsuccessfulBuild.number) {
-				build.status = "buildingFromFailed";
-				markBuild(build);
-     }
+			markBuild(build);				
     }
   });
   

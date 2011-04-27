@@ -9,7 +9,7 @@ end
 
 get '/api/json' do
   result = rand(2) == 1 ? "SUCCESS" : "FAILURE";  
-  response = {"buildable"=> true, "lastSuccessfulBuild"=> {"number" => 763}, "lastUnsuccessfulBuild" => {"number" =>  764}}
+  response = {"buildable"=> true, "lastSuccessfulBuild"=> {"number" => 700}, "lastUnsuccessfulBuild" => {"number" =>  760}}
   response.to_json
 end
 
