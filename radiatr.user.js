@@ -89,9 +89,18 @@ function updateDashboard(id, status){
 	var build = new Object();
 	build.status = activity(status);
 	build.statusInWords = message(status) + '&nbsp;' + timeDuration(status, id) + differentialTime(status.timestamp);
-  var changeSetComment = status.changeSet.items.length > 0 ? status.changeSet.items[0].comment : "Missing Comment!";
-	build.changeSetComment = changeSetComment.substring(0, 140);
-
+  var comments = "";
+  var commits = status.changeSet.items;
+  build.commitCount = commits.length;
+  for(var i=0; i < commits.length; i++){
+    comments += commits[i].comment + "<br/>";
+  }
+  if(build.commitCount == 0 ){
+    comments = "Missing Comment!!";
+  }
+  
+	build.changeSetComment = comments.substring(0, 140);
+  
   var claim = getClaim(status);
   if(claim) {
 		build.claim = new Object();
@@ -146,6 +155,7 @@ function markBuild(build){
 	
 	$(id + ' span.statusInWords').html(build.statusInWords);
   $(id + " span.changeSetComment").html(build.changeSetComment);
+  $(id + ' span.commitCount').html(build.commitCount);
 
 	var claimInfo = $(id + " span.claim");
 	if(build.claim) {
