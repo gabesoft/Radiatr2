@@ -155,7 +155,7 @@ function markBuild(build){
 	
 	$(id + ' span.statusInWords').html(build.statusInWords);
   $(id + " span.changeSetComment").html(build.changeSetComment);
-  $(id + ' span.commitCount').html(build.commitCount);
+  $(id + ' span.commitCount').html("(" + build.commitCount + ")");
 
 	var claimInfo = $(id + " span.claim");
 	if(build.claim) {
