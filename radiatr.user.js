@@ -134,6 +134,7 @@ function lastBuildStatus(build) {
     onload: function(response) {
       var status = JSON.parse(response.responseText);
       self.buildable = status.buildable;
+      self.health = status.healthReport[0].score;
       if(!status.buildable){
 				build.status = "disabled";
 				markDisabled($(this.id));
@@ -154,8 +155,9 @@ function markBuild(build){
 	$(id).addClass(build.status);
 	
 	$(id + ' span.statusInWords').html(build.statusInWords);
-  $(id + " span.changeSetComment").html(build.changeSetComment);
+  $(id + ' span.changeSetComment').html(build.changeSetComment);
   $(id + ' span.commitCount').html("(" + build.commitCount + ")");
+  $(id + ' span.health').html(build.health);
 
 	var claimInfo = $(id + " span.claim");
 	if(build.claim) {
