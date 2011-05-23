@@ -22,6 +22,35 @@ body {
   padding-left:  20px;
 }
 
+#statuses {
+  left: 0pt;
+  position: absolute;
+  top: 0px;
+  width: 1600px;
+  z-index: 99;
+}
+
+.health {
+  font-size: 75px;
+  font-family:  Helvetica,Arial,sans-serif;
+  letter-spacing:  1px;
+  text-decoration:  none;
+  padding-left:  25px;
+  color:  white;  
+}
+
+.sick{
+  color: red;
+}
+
+.weak{
+  color: pink;
+}
+
+.healthy{
+  color: green;
+}
+
 #statuses .statusInWords {
   font-size: 50px;
   font-family:  Helvetica,Arial,sans-serif;
@@ -30,7 +59,16 @@ body {
   padding-left:  25px;
 }
 
-#statuses .changeSetComment {
+#statuses .changeSetComment {  
+  font-size: 50px;
+  font-family:  Helvetica,Arial,sans-serif;
+  letter-spacing:  1px;
+  text-decoration:  none;
+  padding-left:  25px;
+  color:  white;
+}
+
+.commitCount {
   font-size: 50px;
   font-family:  Helvetica,Arial,sans-serif;
   letter-spacing:  1px;
@@ -45,14 +83,6 @@ body {
   letter-spacing:  1px;
   text-decoration:  none;
   padding-left:  25px;
-}
-
-#statuses {
-  left: 0pt;
-  position: absolute;
-  top: 0px;
-  width: 1600px;
-  z-index: 99;
 }
 
 .status {

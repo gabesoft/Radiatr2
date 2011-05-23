@@ -66,7 +66,7 @@ function hudson() {
   });
 }
 
-function currentBuildStatus(build) {
+function currentBuildStatus(build) {  
 	var baseUrl = $('#' + $(build).attr('id') + ' a').attr('href');
 	var url = baseUrl + '/lastBuild/api/json';
 	var id = '#' + $(build).attr('id');
@@ -134,7 +134,7 @@ function lastBuildStatus(build) {
     onload: function(response) {
       var status = JSON.parse(response.responseText);
       self.buildable = status.buildable;
-      self.health = status.healthReport[0].score;
+      self.health = status.healthReport[0].score;      
       if(!status.buildable){
 				build.status = "disabled";
 				markDisabled($(this.id));
@@ -157,8 +157,11 @@ function markBuild(build){
 	$(id + ' span.statusInWords').html(build.statusInWords);
   $(id + ' span.changeSetComment').html(build.changeSetComment);
   $(id + ' span.commitCount').html("(" + build.commitCount + ")");
+  
   $(id + ' span.health').html(build.health);
-
+  var health = buildHealth(build);
+  markHealth(id, health);
+  
 	var claimInfo = $(id + " span.claim");
 	if(build.claim) {
   	claimInfo.html("Claimed by " + build.claim.claimedBy + " because " + build.claim.reason);
@@ -166,7 +169,25 @@ function markBuild(build){
 	}else {
 		claimInfo.hide();
 	}
-	
+}
+
+function buildHealth(build){
+  if(build.health > 50){
+    return "healthy";
+  }else if(build.health === 50){
+    return "weak";
+  }else{
+    return "sick";
+  }    
+}
+
+function markHealth(id, health){
+  $(id + ' span.health').removeClass('sick');
+  $(id + ' span.health').removeClass('weak');
+  $(id + ' span.health').removeClass('healthy');
+  
+  
+  $(id + ' span.health').addClass(health);
 }
 
 function markDisabled(id){
