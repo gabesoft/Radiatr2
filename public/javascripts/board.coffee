@@ -1,2 +1,3 @@
-$(document).onReady ->
+$(document).ready ->
+  console.log $('.hudson')
   $('.hudson').highlight()
