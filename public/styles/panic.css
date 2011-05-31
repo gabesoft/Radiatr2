@@ -2,14 +2,14 @@
 
 @font-face {
   font-family: 'Cutouts';
-  src: url('cutouts.ttf') format('truetype');
+  src: url('images/cutouts.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Cutouts2';
-  src: url('cutouts2.ttf') format('truetype');
+  src: url('images/cutouts2.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -98,6 +98,7 @@ table {
 
 th {
   font-size: 48px;
+  font-family: 'Interstate-Black';
 }
 
 td {
@@ -119,13 +120,6 @@ tr.fail td {
 
 tr.success td {
   background: -webkit-gradient(linear, left top, left bottom, from(#3c3), to(#2b2), color-stop(0.5, #2b2), color-stop(0.5, #3c3));
-}
-
-.alt td {
-	background-color: #1f222d;
-	border-color: #1f222d;
-  background: -webkit-gradient(linear, left top, left bottom, from(#1f222d), to(#333), color-stop(0.5, #333), color-stop(0.5, #1f222d));               
-  border-bottom: 1px solid #555;
 }
 
 /* widths */
