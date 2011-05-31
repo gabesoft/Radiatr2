@@ -17,7 +17,7 @@
     result += "<td>" + build.committers + "</td>";
     return result += "</tr>";
   };
-  createBuildRow = function(build) {
+  createBuildRow = function() {
     var result;
     result = "<tr>";
     result += "<th>Job Name</th>";

@@ -11,7 +11,7 @@ createBuildRow = (build) ->
   result += "<td>" + build.committers + "</td>"
   result += "</tr>"
 
-createBuildRow = (build) ->
+createBuildRow = ->
   result = "<tr>"
   result += "<th>Job Name</th>"
   result += "<th>Health</th>"
