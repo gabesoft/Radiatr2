@@ -1,28 +1,71 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
-<head>
+  <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <title>Status Board</title>
     <link rel='stylesheet' type='text/css' href='styles/panic.css' />
     <script type='text/javascript' src='javascripts/jquery.js'></script>
     <script type='text/javascript' src='javascripts/board.js'></script>
     <style type='text/css'>
-        #board {
-          width: 1000px;
-        }
+      #board {
+        width: 100%;
+      }
 
-        .hudson {
-          width: 100px;
-          height: 100px;
-          background-color: yellow;
-          display: none;
-        }
+      .hudson {
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+        display: none;
+      }
     </style>
-</head>
-<body>
-  <div id='board'>
-    <div class='hudson'></div>
+  </head>
+  <body>
+    <div id='board'>
+      <table>
+        <tr>
+          <th>
+            Job Name
+          </th>
+          <th>
+            Health
+          </th>
+          <th>
+            Project
+          </th>
+          <th>
+            Committers
+          </th>
+        </tr>
+        <tr class='fail'>
+          <td>
+            Test
+          </td>
+          <td>
+            80
+          </td>
+          <td>
+            GMail
+          </td>
+          <td>
+            Derek
+          </td>
+        </tr>
+        <tr class='success'>
+          <td>
+            Staging
+          </td>
+          <td>
+            40
+          </td>
+          <td>
+            GMail
+          </td>
+          <td>
+            Sudhindra
+          </td>
+        </tr>
+      </table>
     </div>
-</body>
+  </body>
 </html>
