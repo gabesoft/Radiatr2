@@ -1,5 +1,5 @@
 (function() {
-  var createBuildRow, getStatusClass, populateGrid;
+  var createBuildRow, getStatusClass, populateGrid, tick;
   getStatusClass = function(build) {
     var result;
     result = build.status === 'Fail' ? 'fail' : 'success';
@@ -17,8 +17,18 @@
     result += "<td>" + build.committers + "</td>";
     return result += "</tr>";
   };
+  createBuildRow = function(build) {
+    var result;
+    result = "<tr>";
+    result += "<th>Job Name</th>";
+    result += "<th>Health</th>";
+    result += "<th>Project</th>";
+    result += "<th>Committers</th>";
+    return result += "</tr>";
+  };
   populateGrid = function(data) {
     var build, _i, _len, _ref, _results;
+    $('#grid').append(createHeaderRow());
     _ref = JSON.parse(data).builds;
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -27,11 +37,14 @@
     }
     return _results;
   };
-  $(document).ready(function() {
+  tick = function() {
     return $.ajax({
       method: 'GET',
       url: '/builds',
       success: populateGrid
     });
+  };
+  $(document).ready(function() {
+    return setInterval(tick, 1000);
   });
 }).call(this);
