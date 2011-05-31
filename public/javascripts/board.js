@@ -1,5 +1,5 @@
 (function() {
-  var createBuildRow, getStatusClass, populateGrid, tick;
+  var createBuildRow, createHeaderRow, getStatusClass, populateGrid, tick;
   getStatusClass = function(build) {
     var result;
     result = build.status === 'Fail' ? 'fail' : 'success';
@@ -17,7 +17,7 @@
     result += "<td>" + build.committers + "</td>";
     return result += "</tr>";
   };
-  createBuildRow = function() {
+  createHeaderRow = function() {
     var result;
     result = "<tr>";
     result += "<th>Job Name</th>";
@@ -28,6 +28,7 @@
   };
   populateGrid = function(data) {
     var build, _i, _len, _ref, _results;
+    $('#grid').text('');
     $('#grid').append(createHeaderRow());
     _ref = JSON.parse(data).builds;
     _results = [];
@@ -45,6 +46,6 @@
     });
   };
   $(document).ready(function() {
-    return setInterval(tick, 1000);
+    return setInterval(tick, 3000);
   });
 }).call(this);

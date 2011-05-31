@@ -11,7 +11,7 @@ createBuildRow = (build) ->
   result += "<td>" + build.committers + "</td>"
   result += "</tr>"
 
-createBuildRow = ->
+createHeaderRow = ->
   result = "<tr>"
   result += "<th>Job Name</th>"
   result += "<th>Health</th>"
@@ -20,6 +20,7 @@ createBuildRow = ->
   result += "</tr>"
 
 populateGrid = (data) ->
+  $('#grid').text ''
   $('#grid').append createHeaderRow()
   for build in JSON.parse(data).builds
     $('#grid').append createBuildRow build
@@ -31,4 +32,4 @@ tick = ->
     url: '/builds'
     success: populateGrid
 
-$(document).ready -> setInterval tick, 1000
+$(document).ready -> setInterval tick, 3000
