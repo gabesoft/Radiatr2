@@ -1,33 +1,27 @@
-Special thanks to Dave Yeung and Fabio Pereira. 
-Other contributions Chris Reade, Derek Hammer and Sudhindra Rao
+Radiatr2
 
-This is a simple hudson build monitor using greasemonkey on Firefox. 
+This code was originally stolen/borrowed/forked from
+[here](https://github.com/ajb/statuspanic). It was used as a starting
+point because it emulated the beautiful Panic dashboard. From there, it
+was served up via a Sinatra back end and added some little touches.
 
-To use :
+The reason for the move from greasemonkey (the technology stack for
+Radiatr) is that greasemonkey was acting up on us and it was very
+difficult to test and debug. So, we are going to use a proper server and
+proper web technologies.
 
-Download these files and install the javascript file into greasemonkey plugin for firefox.
-After installation just edit the test-page.html to point to your hudson build machine with builds you are interested in. Load this page into Firefox and voila you are ready to go.
+To use this, you'll need ruby to run Sinatra. Your monitor doesn't have
+to be the Sinatra server but it might make sense to do it that way (as
+we have done). The server itself is very light and easy to run. It'll
+also make debugging easier.
 
-Your html should be formatted as follows:
+So, you'd fork this repository and edit the config.yaml. It currently
+only has two properties. Url is the base url for your hudson job
+(something like http://buildserver/job/Project) and project name is the
+name of the project (not the job).
 
-<html>
-	<link rel="stylesheet" rev="stylesheet" href="radiatr.css" media="screen">
-	<head><title>Hudson Radiatr</title></head>
-	<body>
-		<div id="statuses">
-
-			<div id="[build id]" class="status hudson">
-				<a class="subject" href="[build url]">[build name]</a>
-				<br/>
-				<span class="statusInWords"></span>
-				<span class="healthScore"></span><br/>
-				<span class="changeSetComment"></span><br />
-				<span class="claim"></span>
-			</div>
-		
-		</div>
-	</body>
-</html>
+Hopefully, we can make this better and provide more useful and
+interesting information. We can create new connectors to connect to
+other CIs, to other project-related tools, etc.
 
 To contribute you may download this code and submit pull requests. 
-To facilitate testing a simple sinatra test server has been added (test_server.rb) which requires you to have rubygems sinatra and json installed.
