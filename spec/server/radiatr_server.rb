@@ -6,7 +6,7 @@ describe RadiatrServer do
     @server = RadiatrServer.new({:projects => [{:project => "one"}, {:project => "two"}], :connector => 'hudson'})
   end
 
-  it "should pass along configs to connector" do
+  it "should pass along project configs to connector" do
     @server.builds[0][:project].should == "one"
     @server.builds[1][:project].should == "two"
   end
