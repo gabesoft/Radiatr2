@@ -1,0 +1,3 @@
+SampleBuild:
+  project: 'A Good One'
+  url: 'http://build-server/jobs/Trunk'

@@ -1,9 +1,9 @@
 module HudsonConnector
-  def latest_build
+  def latest_build config
     full_data = { :healthReport => { :score => 10 }}
     data = { :fullDisplayName => 'Generated', :changeSet => { :items => [{:user => 'Bob'}]}, :building => true, :result => 'Fail'}
 
-    { :job => data[:fullDisplayName], :project => 'None', :health => full_data[:healthReport][:score],
+    { :job => data[:fullDisplayName], :project => config[:project], :health => full_data[:healthReport][:score],
       :committers => data[:changeSet][:items][0][:user], :building => data[:building], :status => data[:result]}
   end
 end

@@ -8,13 +8,15 @@ get '/' do
 end
 
 get '/builds' do
-
-  build1 = { :job => 'Test', :health => 80, :project => 'GMail', :committers => 'Derek', :building => false, :status => 'Fail'}
-  build2 = { :job => 'Staging', :health => 20, :project => 'GMail', :committers => 'Sudhindra', :building => false, :status => 'Success'}
-  build3 = { :job => 'Production', :health => 60, :project => 'GMail', :committers => 'Phil', :building => true, :status => 'Success'}
-  { :builds => [ build1, build2, build3, RadiatrServer.new.latest_build ] }.to_json
+  # Read the YAML file. Not sure how to do this. We then
+  # pass the config into the connector.
+  { :builds => [ RadiatrServer.new.latest_build({}) ] }.to_json
 end
 
 class RadiatrServer
   include HudsonConnector
+
+  def latest_build config
+    { :error => "Please select a connector!" }
+  end
 end
