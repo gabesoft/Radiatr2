@@ -10,6 +10,7 @@ class RadiatrServer
 
   def builds
     @projects.inject [] do |sum, config|
+      @connector.latest_build config
       sum << @connector.latest_build(config)
     end
   end

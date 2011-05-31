@@ -1,3 +1,7 @@
 SampleBuild:
   project: 'A Good One'
   url: 'http://build-server/jobs/Trunk'
+
+TestBuild:
+  project: 'Test Project'
+  url: 'http://build-server/jobs/Test'

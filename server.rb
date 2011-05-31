@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'json'
+require 'yaml'
 
 require File.expand_path('../lib/radiatr_server', __FILE__)
 
@@ -8,7 +9,11 @@ get '/' do
 end
 
 get '/builds' do
-  # Read the YAML file. Not sure how to do this. We then
-  # pass the config into the server.
-  { :builds => RadiatrServer.new({}).builds }.to_json
+  puts config[:projects]
+  { :builds => RadiatrServer.new(config).builds }.to_json
+end
+
+def config
+  config = YAML::load File.open 'config.yaml'
+  { :projects => config.values, :connector => 'hudson' }
 end
