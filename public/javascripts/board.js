@@ -27,16 +27,18 @@
     return result += "</tr>";
   };
   populateGrid = function(data) {
-    var build, _i, _len, _ref, _results;
+    var build, _i, _len, _ref;
     $('#grid').text('');
     $('#grid').append(createHeaderRow());
     _ref = JSON.parse(data).builds;
-    _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       build = _ref[_i];
-      _results.push($('#grid').append(createBuildRow(build)));
+      $('#grid').append(createBuildRow(build));
     }
-    return _results;
+    return $('.building').filter(':not(:animated)').effect('pulsate', {
+      times: 1,
+      opacity: 0.5
+    }, 2000);
   };
   tick = function() {
     return $.ajax({
