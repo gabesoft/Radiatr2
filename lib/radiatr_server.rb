@@ -8,7 +8,7 @@ class RadiatrServer
   end
 
   def builds
-    @config.inject [] do |sum, config|
+    @config[:projects].inject [] do |sum, config|
       sum << latest_build(config)
     end
   end

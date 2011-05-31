@@ -3,7 +3,7 @@ require File.expand_path("../../../lib/radiatr_server", __FILE__)
 describe RadiatrServer do
 
   before do
-    @server = RadiatrServer.new([{:project => "one"}, {:project => "two"}])
+    @server = RadiatrServer.new({:projects => [{:project => "one"}, {:project => "two"}]})
   end
 
   it "should pass along configs to connector" do
