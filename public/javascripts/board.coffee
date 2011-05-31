@@ -1,0 +1,2 @@
+$(document).onReady ->
+  $('.hudson').highlight()
