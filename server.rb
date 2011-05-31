@@ -15,5 +15,5 @@ end
 
 def config
   config = YAML::load File.open 'config.yaml'
-  { :projects => config.values, :connector => 'hudson' }
+  { :projects => config.values, :connector => 'jenkins' }
 end

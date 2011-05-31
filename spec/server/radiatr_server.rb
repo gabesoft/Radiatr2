@@ -12,7 +12,7 @@ describe RadiatrServer do
   end
 
   it "should pick a connector based on the config" do
-    @server.connector.should be_an_instance_of HudsonConnector
+    @server.connector.should be_an_instance_of JenkinsConnector
   end
 
   it "should have a nil connecter if not given one" do

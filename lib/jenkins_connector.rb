@@ -1,4 +1,4 @@
-class HudsonConnector
+class JenkinsConnector
   def latest_build config
     full_data = { :healthReport => { :score => 10 }}
     data = { :fullDisplayName => 'Generated', :changeSet => { :items => [{:user => 'Bob'}]}, :building => true, :result => 'Fail'}
@@ -6,5 +6,5 @@ class HudsonConnector
       :committers => data[:changeSet][:items][0][:user], :building => data[:building], :status => data[:result]}
   end
 
-  def connector; "Hudson"; end
+  def connector; "Jenkins"; end
 end
