@@ -1,6 +1,8 @@
 (function() {
   $(document).ready(function() {
-    console.log($('.hudson'));
-    return $('.hudson').slideToggle();
+    return $('.building').filter(':not(:animated)').effect('pulsate', {
+      times: 1,
+      opacity: 0.5
+    }, 2000);
   });
 }).call(this);
