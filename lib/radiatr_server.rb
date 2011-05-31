@@ -1,4 +1,4 @@
-require File.expand_path('../hudson_connector', __FILE__)
+require File.expand_path('../jenkins_connector', __FILE__)
 
 class RadiatrServer
   attr_reader :connector
@@ -10,7 +10,6 @@ class RadiatrServer
 
   def builds
     @projects.inject [] do |sum, config|
-      @connector.latest_build config
       sum << @connector.latest_build(config)
     end
   end

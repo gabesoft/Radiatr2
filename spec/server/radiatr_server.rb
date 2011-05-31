@@ -3,10 +3,10 @@ require File.expand_path("../../../lib/radiatr_server", __FILE__)
 describe RadiatrServer do
 
   before do
-    @server = RadiatrServer.new({:projects => [{:project => "one"}, {:project => "two"}], :connector => 'hudson'})
+    @server = RadiatrServer.new({:projects => [{:project => "one"}, {:project => "two"}], :connector => 'jenkins'})
   end
 
-  it "should pass along project configs to connector" do
+  xit "should pass along project configs to connector" do
     @server.builds[0][:project].should == "one"
     @server.builds[1][:project].should == "two"
   end

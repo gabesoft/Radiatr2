@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'json'
 require 'yaml'
+require 'net/http'
 
 require File.expand_path('../lib/radiatr_server', __FILE__)
 
@@ -9,7 +10,6 @@ get '/' do
 end
 
 get '/builds' do
-  puts config[:projects]
   { :builds => RadiatrServer.new(config).builds }.to_json
 end
 

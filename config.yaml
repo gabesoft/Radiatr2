@@ -1,7 +1,7 @@
 SampleBuild:
   project: 'Main'
-  url: 'http://build-server/jobs/Trunk'
+  url: 'http://localhost:8080/job/main'
 
 TestBuild:
   project: 'Main'
-  url: 'http://build-server/jobs/Test'
+  url: 'http://localhost:8080/job/main'
