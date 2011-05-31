@@ -4,11 +4,11 @@ class RadiatrServer
   include HudsonConnector
 
   def initialize config
-    @config = config
+    @projects = config[:projects]
   end
 
   def builds
-    @config[:projects].inject [] do |sum, config|
+    @projects.inject [] do |sum, config|
       sum << latest_build(config)
     end
   end
