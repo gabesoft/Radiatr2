@@ -1,7 +1,7 @@
 getStatusClass = (build) ->
   switch build.status
     when 'FAILURE' then result = 'fail'
-    when 'Success' then result = 'success'
+    when 'SUCCESS' then result = 'success'
     else result = ''
   result += ' building' if build.building
   result

@@ -6,7 +6,7 @@
       case 'FAILURE':
         result = 'fail';
         break;
-      case 'Success':
+      case 'SUCCESS':
         result = 'success';
         break;
       default:
