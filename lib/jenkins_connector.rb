@@ -8,7 +8,7 @@ class JenkinsConnector
 
   def status_from_data data, full_data
     return data["result"] if data["result"]
-    data = fetch_full_data full_data["builds"][0]["url"]
+    data = fetch_full_data full_data["builds"][1]["url"]
     data["result"]
   end
 
