@@ -122,6 +122,14 @@ tr.success td {
   background: -webkit-gradient(linear, left top, left bottom, from(#3c3), to(#2b2), color-stop(0.5, #2b2), color-stop(0.5, #3c3));
 }
 
+tr.success.building td {
+  background: -webkit-gradient(linear, left top, left bottom, from(#cc3), to(#bb2), color-stop(0.5, #bb2), color-stop(0.5, #cc3));
+}
+
+tr.fail.building td {
+  background: -webkit-gradient(linear, left top, left bottom, from(#c93), to(#b82), color-stop(0.5, #b82), color-stop(0.5, #c93));
+}
+
 /* widths */
 .cell_0 { width: 35%; }
 .cell_1 { width: 20%; }
