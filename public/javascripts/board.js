@@ -2,7 +2,16 @@
   var createBuildRow, createHeaderRow, getStatusClass, populateGrid, tick;
   getStatusClass = function(build) {
     var result;
-    result = build.status === 'Fail' ? 'fail' : 'success';
+    switch (build.status) {
+      case 'FAILURE':
+        result = 'fail';
+        break;
+      case 'Success':
+        result = 'success';
+        break;
+      default:
+        result = '';
+    }
     if (build.building) {
       result += ' building';
     }
