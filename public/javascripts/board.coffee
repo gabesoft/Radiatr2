@@ -11,7 +11,7 @@ createBuildRow = (build) ->
   result += "<td>" + build.job + "</td>"
   result += "<td>" + build.health + "</td>"
   result += "<td>" + build.project + "</td>"
-  result += "<td>" + build.committers + "</td>"
+  result += "<td>" + build.duration + "</td>"
   result += "</tr>"
 
 createHeaderRow = ->
@@ -19,7 +19,7 @@ createHeaderRow = ->
   result += "<th>Job Name</th>"
   result += "<th>Health</th>"
   result += "<th>Project</th>"
-  result += "<th>Committers</th>"
+  result += "<th>Duration</th>"
   result += "</tr>"
 
 populateGrid = (data) ->
@@ -30,9 +30,10 @@ populateGrid = (data) ->
   $('.building').filter(':not(:animated)').effect('pulsate', { times: 1, opacity: 0.5 }, 2000)
 
 tick = ->
-  $.ajax
+  $.ajax {
     method: 'GET'
     url: '/builds'
     success: populateGrid
+  }
 
 $(document).ready -> setInterval tick, 3000

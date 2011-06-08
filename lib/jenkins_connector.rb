@@ -3,7 +3,8 @@ class JenkinsConnector
     full_data = fetch_full_data config["url"]
     data = fetch_data config["url"]
     { :job => data["fullDisplayName"], :project => config["project"], :health => health_from_data(full_data),
-      :committers => committers_from_data(data), :building => data["building"], :status => status_from_data(data, full_data) }
+      :committers => committers_from_data(data), :building => data["building"], :status => status_from_data(data, full_data),
+      :duration => duration_from_data(data)}
   end
 
   def status_from_data data, full_data
@@ -18,6 +19,16 @@ class JenkinsConnector
 
   def committers_from_data data
     data["changeSet"]["items"][0]["user"] if data["changeSet"]["items"].size > 0
+  end
+
+  def duration_from_data data
+    seconds = time_building_from_data(data)
+    (seconds/60).to_s + "m " + (seconds%60).to_s + "s"
+  end
+  
+  def time_building_from_data data
+    return (((Time.now.to_f * 1000) - data["timestamp"]) / 1000).to_i if data["duration"] == 0
+    data["duration"] / 1000
   end
 
   def fetch_full_data url

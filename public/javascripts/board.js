@@ -1,16 +1,13 @@
-(function() {
+(function(){
   var createBuildRow, createHeaderRow, getStatusClass, populateGrid, tick;
   getStatusClass = function(build) {
-    var result;
-    switch (build.status) {
-      case 'FAILURE':
-        result = 'fail';
-        break;
-      case 'SUCCESS':
-        result = 'success';
-        break;
-      default:
-        result = '';
+    var _a, result;
+    if ((_a = build.status) === 'FAILURE') {
+      result = 'fail';
+    } else if (_a === 'SUCCESS') {
+      result = 'success';
+    } else {
+      result = '';
     }
     if (build.building) {
       result += ' building';
@@ -23,7 +20,7 @@
     result += "<td>" + build.job + "</td>";
     result += "<td>" + build.health + "</td>";
     result += "<td>" + build.project + "</td>";
-    result += "<td>" + build.committers + "</td>";
+    result += "<td>" + build.duration + "</td>";
     return result += "</tr>";
   };
   createHeaderRow = function() {
@@ -32,16 +29,16 @@
     result += "<th>Job Name</th>";
     result += "<th>Health</th>";
     result += "<th>Project</th>";
-    result += "<th>Committers</th>";
+    result += "<th>Duration</th>";
     return result += "</tr>";
   };
   populateGrid = function(data) {
-    var build, _i, _len, _ref;
+    var _a, _b, _c, build;
     $('#grid').text('');
     $('#grid').append(createHeaderRow());
-    _ref = JSON.parse(data).builds;
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      build = _ref[_i];
+    _b = JSON.parse(data).builds;
+    for (_a = 0, _c = _b.length; _a < _c; _a++) {
+      build = _b[_a];
       $('#grid').append(createBuildRow(build));
     }
     return $('.building').filter(':not(:animated)').effect('pulsate', {
@@ -59,4 +56,4 @@
   $(document).ready(function() {
     return setInterval(tick, 3000);
   });
-}).call(this);
+})();
