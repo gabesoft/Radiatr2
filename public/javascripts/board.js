@@ -21,6 +21,7 @@
     result += "<td>" + build.health + "</td>";
     result += "<td>" + build.project + "</td>";
     result += "<td>" + build.duration + "</td>";
+    result += "<td>" + build.failures + "</td>";
     return result += "</tr>";
   };
   createHeaderRow = function() {
@@ -30,6 +31,7 @@
     result += "<th>Health</th>";
     result += "<th>Project</th>";
     result += "<th>Duration</th>";
+    result += "<th>Failures</th>";
     return result += "</tr>";
   };
   populateGrid = function(data) {

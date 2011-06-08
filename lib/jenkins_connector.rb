@@ -4,7 +4,7 @@ class JenkinsConnector
     data = fetch_data config["url"]
     { :job => data["fullDisplayName"], :project => config["project"], :health => health_from_data(full_data),
       :committers => committers_from_data(data), :building => data["building"], :status => status_from_data(data, full_data),
-      :duration => duration_from_data(data)}
+      :duration => duration_from_data(data), :failures => fail_count_from_data(data)}
   end
 
   def status_from_data data, full_data
@@ -29,6 +29,16 @@ class JenkinsConnector
   def time_building_from_data data
     return (((Time.now.to_f * 1000) - data["timestamp"]) / 1000).to_i if data["duration"] == 0
     data["duration"] / 1000
+  end
+  
+  def fail_count_from_data data
+    data["actions"].inject 0, do |sum, value|
+      if value.has_key? "failCount" 
+        sum + value["failCount"]
+      else
+        sum
+      end
+    end
   end
 
   def fetch_full_data url
