@@ -127,7 +127,7 @@ tr.success.building td {
 }
 
 tr.fail.building td {
-  background: -webkit-gradient(linear, left top, left bottom, from(#c93), to(#b82), color-stop(0.5, #b82), color-stop(0.5, #c93));
+  background: -webkit-gradient(linear, left top, left bottom, from(#c63), to(#b82), color-stop(0.5, #b82), color-stop(0.5, #c63));
 }
 
 /* widths */
