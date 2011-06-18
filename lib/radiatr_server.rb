@@ -3,7 +3,8 @@ class RadiatrServer
 
   def initialize config
     @projects = config[:projects]
-    @connector = JenkinsConnector.new if config[:connector] and config[:connector].downcase == "jenkins"
+    jenkins = config[:connector] and config[:connector].downcase == "jenkins"
+    @connector = JenkinsConnector.new if jenkins
   end
 
   def builds

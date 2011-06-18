@@ -19,3 +19,5 @@ $LOAD_PATH.unshift("#{PROJECT_PATH}/lib")
 %w[lib].each do |path|
   Dir["#{PROJECT_PATH}/#{path}/**/*.rb"   ].each { |lib| require lib }
 end
+
+require 'server'

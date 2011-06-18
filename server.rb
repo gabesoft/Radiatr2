@@ -1,4 +1,7 @@
+
 class Server < Sinatra::Base
+  set :root, File.dirname(__FILE__)
+  
   get '/' do
     File.read File.join 'public', 'index.htm'
   end
