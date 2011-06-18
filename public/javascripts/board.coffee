@@ -12,9 +12,13 @@ createBuildRow = (build) ->
   result += "<td>" + build.health + "</td>"
   result += "<td>" + build.project + "</td>"
   result += "<td>" + build.duration + "</td>"
-  result += "<td>" + build.failures + "</td>"
   result += "</tr>"
-
+  if(build.status == 'FAILURE')
+    result += "<tr class='comment'>"
+    result += "<td colspan=4>" + build.comments + "</td>"
+    result += "</tr>"
+  result
+    
 createHeaderRow = ->
   result = "<tr>"
   result += "<th>Job Name</th>"

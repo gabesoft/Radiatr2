@@ -9,7 +9,7 @@ class JenkinsConnector
   end
 
   def comments data
-    data["changeSet"]["items"].join(";")
+    data["changeSet"]["items"][0]["comment"]
   end
   
   def status_from_data data, full_data

@@ -130,6 +130,11 @@ tr.fail.building td {
   background: -webkit-gradient(linear, left top, left bottom, from(#c63), to(#b82), color-stop(0.5, #b82), color-stop(0.5, #c63));
 }
 
+tr.comment {
+  background: -webkit-gradient(linear, left top, left bottom, from(#c33), to(#b22), color-stop(0.5, #b22), color-stop(0.5, #c33));  
+  font-size: 25px;
+}
+
 /* widths */
 .cell_0 { width: 35%; }
 .cell_1 { width: 20%; }
