@@ -14,6 +14,9 @@ createBuildRow = (build) ->
   result += "<td>" + build.duration + "</td>"
   result += "<td>" + build.failures + "</td>"
   result += "</tr>"
+  result += "<tr class='" + getStatusClass(build) + "'>"
+  result += "<td>" + build.comments + "</td>"
+  result += "</tr>"
 
 createHeaderRow = ->
   result = "<tr>"

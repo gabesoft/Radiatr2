@@ -1,4 +1,4 @@
-require File.expand_path("../../../lib/radiatr_server", __FILE__)
+require 'spec_helper'
 
 describe RadiatrServer do
 

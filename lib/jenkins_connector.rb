@@ -4,9 +4,14 @@ class JenkinsConnector
     data = fetch_data config["url"]
     { :job => data["fullDisplayName"], :project => config["project"], :health => health_from_data(full_data),
       :committers => committers_from_data(data), :building => data["building"], :status => status_from_data(data, full_data),
-      :duration => duration_from_data(data), :failures => fail_count_from_data(data)}
+      :duration => duration_from_data(data), :failures => fail_count_from_data(data), 
+      :comments => comments(data)}
   end
 
+  def comments data
+    data["changeSet"]["items"].join(";")
+  end
+  
   def status_from_data data, full_data
     return data["result"] if data["result"]
     data = fetch_full_data full_data["builds"][1]["url"]
@@ -42,11 +47,11 @@ class JenkinsConnector
   end
 
   def fetch_full_data url
-    JSON.parse Net::HTTP.get URI.parse(url + '/api/json')
+    ::JSON.parse Net::HTTP.get URI.parse(url + '/api/json')
   end
 
   def fetch_data url
-    JSON.parse Net::HTTP.get URI.parse(url + '/lastBuild/api/json')
+    ::JSON.parse Net::HTTP.get URI.parse(url + '/lastBuild/api/json')
   end
 
   def connector; "Jenkins"; end

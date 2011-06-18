@@ -1,5 +1,3 @@
-require File.expand_path('../jenkins_connector', __FILE__)
-
 class RadiatrServer
   attr_reader :connector
 
