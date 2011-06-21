@@ -10,8 +10,8 @@ createBuildRow = (build) ->
   result = "<tr class='" + getStatusClass(build) + "'>"
   result += "<td>" + build.job + "</td>"
   result += "<td>" + build.health + "</td>"
-  result += "<td>" + build.project + "</td>"
   result += "<td>" + build.duration + "</td>"
+  result += "<td>" + build.failures + "</td>"
   result += "</tr>"
   if(build.status == 'FAILURE')
     result += "<tr class='comment'>"
@@ -23,8 +23,8 @@ createHeaderRow = ->
   result = "<tr>"
   result += "<th>Job Name</th>"
   result += "<th>Health</th>"
-  result += "<th>Project</th>"
   result += "<th>Duration</th>"
+  result += "<th>Failures</th>"
   result += "</tr>"
 
 populateGrid = (data) ->
