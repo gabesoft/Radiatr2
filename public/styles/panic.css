@@ -47,12 +47,14 @@ body {
   background-color: #1c2020;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#454f4f), to(#111));	  
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#454f4f), to(#111));
+  background: -moz-linear-gradient(45deg,#454f4f,#111);	  
 }
 
 
 .bluegradient {
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4c5660), to(#091b31));	  
+  background: -moz-linear-gradient(45deg,#4c5660,#091b31);	  
 }
 
 .jumbo {
@@ -109,6 +111,7 @@ td {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#222), color-stop(0.5, #222), color-stop(0.5, #333));
+  background: -moz-linear-gradient(45deg,#333,#222);	  
   text-shadow: black 1px 1px 0px;
   border-bottom: 1px solid #555;
   vertical-align: middle;
@@ -116,22 +119,27 @@ td {
 
 tr.fail td {
   background: -webkit-gradient(linear, left top, left bottom, from(#c33), to(#b22), color-stop(0.5, #b22), color-stop(0.5, #c33));
+  background: -moz-linear-gradient(45deg,#c33,#b22);	    
 }
 
 tr.success td {
   background: -webkit-gradient(linear, left top, left bottom, from(#3c3), to(#2b2), color-stop(0.5, #2b2), color-stop(0.5, #3c3));
+  background: -moz-linear-gradient(45deg,#3c3,#2b2);	    
 }
 
 tr.success.building td {
   background: -webkit-gradient(linear, left top, left bottom, from(#cc3), to(#bb2), color-stop(0.5, #bb2), color-stop(0.5, #cc3));
+  background: -moz-linear-gradient(45deg,#cc3,#bb2);	    
 }
 
 tr.fail.building td {
   background: -webkit-gradient(linear, left top, left bottom, from(#c63), to(#b82), color-stop(0.5, #b82), color-stop(0.5, #c63));
+  background: -moz-linear-gradient(45deg,#c63,#b82);	    
 }
 
 tr.comment {
   background: -webkit-gradient(linear, left top, left bottom, from(#c33), to(#b22), color-stop(0.5, #b22), color-stop(0.5, #c33));  
+  background: -moz-linear-gradient(45deg,#c33,#b22);	    
   font-size: 25px;
 }
 
