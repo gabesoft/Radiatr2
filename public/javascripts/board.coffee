@@ -25,7 +25,6 @@ createHeaderRow = ->
   result += "<th>Health</th>"
   result += "<th>Project</th>"
   result += "<th>Duration</th>"
-  result += "<th>Failures</th>"
   result += "</tr>"
 
 populateGrid = (data) ->

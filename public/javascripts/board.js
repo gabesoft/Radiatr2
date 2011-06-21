@@ -38,7 +38,6 @@ createHeaderRow = function() {
   result += "<th>Health</th>";
   result += "<th>Project</th>";
   result += "<th>Duration</th>";
-  result += "<th>Failures</th>";
   return result += "</tr>";
 };
 populateGrid = function(data) {
