@@ -9,9 +9,12 @@ class JenkinsConnector
   end
 
   def comments data
-    return data["changeSet"]["items"].inject "" do |allComments, item|
-      allComments += item["comment"]
-    end unless data["changeSet"]["items"].empty?
+    unless data["changeSet"]["items"].empty?
+      comments = data["changeSet"]["items"].inject "" do |allComments, item|
+        allComments += item["comment"]
+      end 
+      return comments
+    end  
     "No Comment (Forced)"
   end
   
@@ -40,7 +43,7 @@ class JenkinsConnector
   end
   
   def fail_count_from_data data
-    data["actions"].inject 0, do |sum, value|
+    data["actions"].inject 0 do |sum, value|
       if value.has_key? "failCount" 
         sum + value["failCount"]
       else
