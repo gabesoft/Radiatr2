@@ -1,3 +1,10 @@
 TestBuild:
   project: 'Main'
   url: 'http://localhost:5555'
+  order: 1
+
+NewBuild:
+  project: 'NotMain'
+  url: 'http://localhost:5555'
+  order: 2
+  

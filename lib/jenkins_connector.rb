@@ -9,7 +9,10 @@ class JenkinsConnector
   end
 
   def comments data
-    data["changeSet"]["items"][0]["comment"]
+    return data["changeSet"]["items"].inject "" do |allComments, item|
+      allComments += item["comment"]
+    end unless data["changeSet"]["items"].empty?
+    "No Comment (Forced)"
   end
   
   def status_from_data data, full_data

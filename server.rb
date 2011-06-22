@@ -12,6 +12,7 @@ class Server < Sinatra::Base
 
   def config
     config = YAML::load File.open 'config.yaml'
-    { :projects => config.values, :connector => 'jenkins' }
+    sorted_projects = config.values.sort_by {|b| b['order'] }
+    { :projects => sorted_projects, :connector => 'jenkins' }
   end
 end
