@@ -13,7 +13,7 @@ class JenkinsConnector
       comments = data["changeSet"]["items"].inject "" do |allComments, item|
         allComments += item["comment"]
       end 
-      return comments
+      return comments.slice[0..140]
     end  
     "No Comment (Forced)"
   end
