@@ -7,4 +7,31 @@ describe JenkinsConnector do
                                                :url => "url"})
     build[:project].should == expected_name
   end
+  
+  it "should parse comments" do
+    build = JenkinsConnector.new
+    data = {'changeSet' => {'items' => [{'comment' => 'checkin comment 1'} ,{'comment' => 'checkin comment 2'}]}}
+    expected_comments = data['changeSet']['items'].inject "" do |comments, item|
+      comments += item['comment'] + ";"
+    end
+    comments = build.comments data
+    
+    comments.should == expected_comments
+  end
+  
+  it "should return standard comment when build is forced" do
+    build = JenkinsConnector.new
+    data = {'changeSet' => {'items' => nil}}
+    comments = build.comments data
+    
+    comments.should == "No Comment (Forced)"
+  end
+  
+  it "should calculate total failcount" do
+    build = JenkinsConnector.new
+    data = {'actions' => [{'failCount' => 2}, {'failCount' => 3}]}
+    
+    fail_count = build.fail_count_from_data data
+    fail_count.should == 5
+  end
 end

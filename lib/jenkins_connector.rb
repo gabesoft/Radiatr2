@@ -9,9 +9,10 @@ class JenkinsConnector
   end
 
   def comments data
-    unless data["changeSet"]["items"].empty?
-      comments = data["changeSet"]["items"].inject "" do |allComments, item|
-        allComments += item["comment"]
+    items = data['changeSet']['items']
+    unless items.nil?
+      comments = items.inject "" do |allComments, item|
+        allComments += item["comment"] + ';'
       end 
       return comments.slice(0, 140)
     end  
@@ -34,7 +35,7 @@ class JenkinsConnector
 
   def duration_from_data data
     seconds = time_building_from_data(data)
-    (seconds/60).to_s + "m " + (seconds%60).to_s + "s"
+    (seconds / 60).to_s + "m " + (seconds % 60).to_s + "s"
   end
   
   def time_building_from_data data
