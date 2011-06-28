@@ -6,6 +6,10 @@ class JenkinsConnector
       :committers => committers_from_data(data), :building => data["building"], :status => status_from_data(data, full_data),
       :duration => duration_from_data(data), :failures => fail_count_from_data(data), 
       :comments => comments(data)}
+  rescue => e
+    puts e.inspect
+    puts e.backtrace
+    { :job => "Connection error" }
   end
 
   def comments data
