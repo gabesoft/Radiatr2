@@ -15,3 +15,5 @@ desc "Run radiatr server"
 task :run do
   Server.run!
 end
+
+task :default => :run
