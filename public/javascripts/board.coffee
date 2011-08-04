@@ -10,7 +10,7 @@ createBuildRow = (build) ->
   result = "<tr class='" + getStatusClass(build) + "'>"
   result += "<td>" + build.job + "</td>"
   result += "<td>" + build.health + "</td>"
-  result += "<td id='progressbar'>" + build.duration + "</td>"
+  result += "<td>" + build.duration + "</td>"
   result += "<td>" + build.failures + "</td>"
   result += "</tr>"
   if(build.status == 'FAILURE')
@@ -41,8 +41,5 @@ tick = ->
     url: '/builds'
     success: populateGrid
   }
-
-progress = (duration)->
-  $('#progressbar' ).progressbar({ value: duration/10000 })
 
 $(document).ready -> setInterval tick, 3000
