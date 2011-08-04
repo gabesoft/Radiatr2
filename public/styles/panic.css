@@ -93,13 +93,13 @@ body {
 /* @group GRID MODULE */
 
 table {
-  font-size: 60px;
+  font-size: 54px;
   border-spacing: 10px 10px;
   width: 100%;
 }
 
 th {
-  font-size: 48px;
+  font-size: 20px;
   font-family: 'Interstate-Black';
 }
 
