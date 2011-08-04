@@ -20,4 +20,4 @@ $LOAD_PATH.unshift("#{PROJECT_PATH}/lib")
   Dir["#{PROJECT_PATH}/#{path}/**/*.rb"   ].each { |lib| require lib }
 end
 
-require 'server'
+require 'radiatr'

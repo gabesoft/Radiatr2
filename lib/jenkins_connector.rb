@@ -2,9 +2,13 @@ class JenkinsConnector
   def latest_build config
     full_data = fetch_full_data config["url"]
     data = fetch_data config["url"]
-    { :job => data["fullDisplayName"], :project => config["project"], :health => health_from_data(full_data),
-      :committers => committers_from_data(data), :building => data["building"], :status => status_from_data(data, full_data),
-      :duration => duration_from_data(data), :failures => fail_count_from_data(data), 
+    { :job => data["fullDisplayName"], :project => config["project"], 
+      :health => health_from_data(full_data),
+      :committers => committers_from_data(data), :building => data["building"], 
+      :status => status_from_data(data, full_data),
+      :duration => duration_from_data(data), 
+      :progress => time_building_from_data(data),
+      :failures => fail_count_from_data(data), 
       :comments => comments(data)}
   rescue => e
     puts e.inspect
