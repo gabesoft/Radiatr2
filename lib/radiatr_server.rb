@@ -3,13 +3,12 @@ class RadiatrServer
 
   def initialize config
     @projects = config[:projects]
-    jenkins = config[:connector] and config[:connector].downcase == "jenkins"
-    @connector = JenkinsConnector.new if jenkins
+    @jenkins = config[:connector] and config[:connector].downcase == "jenkins"
   end
 
   def builds
     @projects.inject [] do |sum, config|
-      sum << @connector.latest_build(config)
+      sum << Jenkins::Connector.new(config).latest_build
     end
   end
 end
