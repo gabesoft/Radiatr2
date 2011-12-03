@@ -11,7 +11,7 @@ class Radiatr < Sinatra::Base
 
   def config
     config = YAML::load File.open 'config.yaml'
-    sorted_projects = config.values.sort_by {|b| b['order'] }
-    { :projects => sorted_projects, :connector => 'jenkins' }
+    sorted_projects = config["jenkins"].values.sort_by {|b| b['order'] }
+    { :projects => sorted_projects, :connector => 'jenkins', :mingle => config["mingle"] }
   end
 end

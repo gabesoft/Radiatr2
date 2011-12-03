@@ -33,7 +33,7 @@ module Jenkins
     end
 
     def duration data
-      seconds = time_building_from_data(data)
+      seconds = time_building(data)
       (seconds / 60).to_s + "m " + (seconds % 60).to_s + "s"
     end
 
