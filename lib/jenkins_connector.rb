@@ -1,11 +1,11 @@
 class JenkinsConnector
   def latest_build config
-    full_data = fetch_full_data config["url"]
-    data = fetch_data config["url"]
+    full_data = fetch_full_data config["url"], config
+    data = fetch_data config["url"], config
     { :job => data["fullDisplayName"], :project => config["project"], 
       :health => health_from_data(full_data),
       :committers => committers_from_data(data), :building => data["building"], 
-      :status => status_from_data(data, full_data),
+      :status => status_from_data(data, full_data, config),
       :duration => duration_from_data(data), 
       :progress => time_building_from_data(data),
       :failures => fail_count_from_data(data), 
@@ -26,10 +26,10 @@ class JenkinsConnector
     end  
     "No Comment (Forced)"
   end
-  
-  def status_from_data data, full_data
+
+  def status_from_data data, full_data, config
     return data["result"] if data["result"]
-    data = fetch_full_data full_data["builds"][1]["url"]
+    data = fetch_full_data full_data["builds"][1]["url"], config
     data["result"]
   end
 
@@ -45,12 +45,12 @@ class JenkinsConnector
     seconds = time_building_from_data(data)
     (seconds / 60).to_s + "m " + (seconds % 60).to_s + "s"
   end
-  
+
   def time_building_from_data data
     return (((Time.now.to_f * 1000) - data["timestamp"]) / 1000).to_i if data["duration"] == 0
     data["duration"] / 1000
   end
-  
+
   def fail_count_from_data data
     data["actions"].inject 0 do |sum, value|
       if value.has_key? "failCount" 
@@ -61,13 +61,24 @@ class JenkinsConnector
     end
   end
 
-  def fetch_full_data url
-    ::JSON.parse Net::HTTP.get URI.parse(url + '/api/json')
+  def fetch_full_data url, config
+    get_uri URI.parse(url + '/api/json'), config
   end
 
-  def fetch_data url
-    ::JSON.parse Net::HTTP.get URI.parse(url + '/lastBuild/api/json')
+  def get_uri uri, config
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Get.new(uri.request_uri)
+    request.basic_auth(config["user"], config["password"]) if has_login?(config)
+    ::JSON.parse http.request(request).body
+  end
+
+  def fetch_data url, config
+    get_uri URI.parse(url + '/lastBuild/api/json'), config
   end
 
   def connector; "Jenkins"; end
+
+  def has_login? config
+    config.has_key?("user")
+  end
 end
