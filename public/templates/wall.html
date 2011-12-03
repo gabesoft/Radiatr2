@@ -1,0 +1,29 @@
+<div class="storyWall">
+  <div class="body">
+    <ul class="wall ${orientation}">
+      {{each(i, lane) lanes}}
+        <li class="swimlane" data-name="${lane.name}">
+          <div class="header">
+            <div class="name">${lane.name}</div>
+          </div>
+          <div class="cards">
+            {{each(j, card) cards}}
+              <div class="card" style="background-color: ${card.card_type.color}" id="${card.number}" data-type="${card.card_type.name}" data-modified="${card.modified_on}">
+                <div class="header">
+                  <div class="number">#${card.number}</div>
+                </div>
+                <div class="body">
+                  <div class="name">${card.name}</div>
+                  <div class="type">${card.card_type.name}</div>
+                </div>
+                <div class="footer">
+                  <div class="owner">${card.owner}</div>
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>

@@ -1,7 +1,9 @@
 source "http://rubygems.org"
 source "http://gems.github.com/"
 
+gem "i18n"
 gem "rake"
+gem "wrest"
 
 gem 'sinatra'
 gem 'json'

@@ -1,0 +1,355 @@
+@bgColor: #1e1e1e;
+@headingColor: #F15A23;
+@cornerRadius: 4px;
+@contentHeight: 600px;
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  background: @bgColor;
+  color: white;
+  text-shadow: 0 0 1px rgba(0,0,0,0.1);
+}
+
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+span,
+table,
+tr,
+td,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+ul, li {
+  list-style-type: none;
+}
+
+#content {
+  position: relative;
+
+  > .body {
+    overflow: hidden;
+    margin: 0 10px 0 10px;
+    -webkit-border-radius: @cornerRadius;
+    -moz-border-radius: @cornerRadius;
+    height: @contentHeight;
+    position: relative;
+
+    > .curtain {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: @contentHeight;
+      background-color: @bgColor;
+      display: none;
+      z-index: 1;
+    }
+
+    > .content {
+      height: @contentHeight;
+    }
+  }
+
+  > .header {
+    margin: 8px 0px 8px 32px;
+
+    .tw_logo {
+      vertical-align: 6;
+    }
+
+    .mingle_logo {
+      vertical-align: -8;
+    }
+
+    .heading {
+      margin-left: 4px;
+      border-left: 2px solid #888;
+      padding-left: 10px;
+
+      vertical-align: 8;
+      font-weight: normal;
+      font-size: 32px;
+      display: inline;
+    }
+  }
+}
+
+#content .storyWall {
+  .legend {
+    display: none;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 15px;
+
+    margin: 4px 10px 0px 10px;
+    background-color: @bgColor;
+    -webkit-border-radius: @cornerRadius;
+    -moz-border-radius: @cornerRadius;
+    float: right;
+    width: 400px;
+    padding: 10px;
+
+    .legendKey {
+      float: left;
+      margin-right: 8px;
+
+      .color {
+        -webkit-border-radius: @cornerRadius;
+        -moz-border-radius: @cornerRadius;
+        float: left;
+        width: 10px;
+        height: 10px;
+      }
+
+      .name {
+        padding-left: 4px;
+        font-size: x-small;
+        float: left;
+      }
+    }
+  }
+
+  .wall.horizontal {
+    .swimlane {
+      display: inline;
+      width: 100%;
+      border-bottom: 4px solid black;
+      float: left;
+      clear: both;
+
+      > .header {
+        -webkit-border-radius: @cornerRadius;
+        -moz-border-radius: @cornerRadius;
+        background-color: @headingColor;
+        padding: 4px;
+        text-align: center;
+        margin: 8px;
+        float: left;
+        width: 100px;
+      }
+
+      .cards {
+        float: left;
+        width: 90%;
+      }
+
+      .card {
+        -webkit-border-radius: @cornerRadius;
+        -moz-border-radius: @cornerRadius;
+        float: left;
+        margin: 8px;
+
+        .header {
+          -webkit-border-top-left-radius: @cornerRadius;
+          -moz-border-radius-top-left: @cornerRadius;
+          -webkit-border-bottom-left-radius: @cornerRadius;
+          -moz-border-bottom-left-radius: @cornerRadius;
+          background-color: black;
+          color: white;
+          opacity: 0.8;
+          font-size: small;
+          float: left;
+          padding: 4px 8px;
+          height: 16px;
+        }
+
+        .body {
+          -webkit-border-top-right-radius: @cornerRadius;
+          -moz-border-radius-top-right: @cornerRadius;
+          overflow: hidden;
+          width: 260px;
+          height: 12px;
+          padding: 4px;
+          margin: 0px 0px 4px 0px;
+          font-size: small;
+          color: black;
+          background-color: white;
+          opacity: 0.8;
+        }
+
+        .footer {
+          display: none;
+        }
+
+        .owner {
+          display: none;
+        }
+
+        .type {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .wall.vertical {
+    margin-left: auto;
+    margin-right: auto;
+
+    .swimlane {
+      display: block;
+      width: 130px;
+      float: left;
+      border-right: 2px solid #888;
+
+      > .header {
+        -webkit-border-radius: @cornerRadius;
+        -moz-border-radius: @cornerRadius;
+        background-color: @headingColor;
+        padding: 4px;
+        text-align: center;
+        margin: 8px;
+      }
+
+      .cards {
+        height: 400px;
+        overflow: hidden;
+      }
+    }
+
+    .card {
+      -webkit-border-radius: @cornerRadius;
+      -moz-border-radius: @cornerRadius;
+      width: 114px;
+      float: left;
+      height: 100px;
+      margin: 8px;
+
+      .header {
+        background-color: black;
+        color: white;
+        opacity: 0.8;
+        font-size: small;
+        padding: 4px;
+        height: 15px;
+      }
+
+      .body {
+        font-size: x-small;
+        background-color: white;
+        opacity: 0.8;
+        color: black;
+        padding: 4px;
+        overflow: hidden;
+        height: 60px;
+
+        > div {
+          padding-top: 2px;
+        }
+
+        .name {
+          font-size: small;
+        }
+      }
+
+      .footer {
+        color: black;
+        text-align: right;
+        font-size: xx-small;
+        padding: 4px 2px 2px 0px;
+        font-weight: bold;
+        height: 15px;
+      }
+
+      .owner {
+        font-weight: bold;
+      }
+
+      .type {
+        color: #999;
+      }
+    }
+
+    .card.blocked {
+    }
+  }
+}
+
+#content .interestingValue {
+  .value {
+    display: inline;
+    font-size: 300px;
+    letter-spacing: -0.08em;
+    line-height: 90%;
+  }
+
+  .unit {
+    display: inline;
+    font-size: 30px;
+  }
+
+  .heading {
+    -webkit-border-radius: @cornerRadius;
+    -moz-border-radius: @cornerRadius;
+
+    margin: 0px 20px;
+    background-color: @headingColor;
+    padding: 10px;
+    font-size: 80px;
+    text-transform: uppercase;
+  }
+
+  .caption {
+    margin: 10px 30px;
+    font-size: 24px;
+    color: #888;
+    font-style: italic;
+    font-weight: 100;
+  }
+}
+
+#content .lineChart {
+  .chart {
+    height: @contentHeight - 140px;
+    margin: 0 20px 20px 20px;
+  }
+  
+  .heading {
+    -webkit-border-radius: @cornerRadius;
+    -moz-border-radius: @cornerRadius;
+    margin: 0px 20px;
+    background-color: @headingColor;
+    padding: 10px;
+    font-size: 40px;
+    text-transform: uppercase;
+  }
+}
+
+#content .nav {
+  position: absolute;
+  z-index: 2;
+  top: 8px;
+  right: 8px;
+  display: none;
+
+  a {
+    background-color: #1a2746;
+    -webkit-border-radius: @cornerRadius;
+    -moz-border-radius: @cornerRadius;
+    text-decoration: none;
+    color: #eee;
+    font-size: 20px;
+    display: block;
+    float: left;
+    padding: 12px;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    text-align: center;
+    border: 3px solid #203361;
+
+    &:hover { background-color: #203361; }
+    &.paused { background-color: #203361; }
+  }
+}

@@ -12,6 +12,8 @@ require 'json'
 require 'yaml'
 require 'net/http'
 require 'sinatra'
+require 'i18n'
+require 'wrest'
 
 $LOAD_PATH.unshift( "#{PROJECT_PATH}")
 $LOAD_PATH.unshift("#{PROJECT_PATH}/lib")
