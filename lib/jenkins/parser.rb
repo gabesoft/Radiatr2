@@ -1,5 +1,7 @@
 module Jenkins
   class Parser
+    attr_reader :fetcher
+
     def initialize(fetcher)
       @fetcher = fetcher
     end
@@ -9,14 +11,14 @@ module Jenkins
         :health => health_from_data(full_data),
         :committers => committers_from_data(data),
         :building => data["building"],
-        :status => status_from_data(data, full_data),
+        :status => status(data, full_data),
         :duration => duration_from_data(data),
         :progress => time_building_from_data(data),
         :failures => fail_count(data),
-        :comments => comments(data)}
+        :comments => comments(data) }
     end
 
-    def status_from_data data, full_data
+    def status data, full_data
       return data["result"] if data["result"]
       data = fetcher.fetch(full_data["builds"][1]["url"] + '/api/json')
       data["result"]

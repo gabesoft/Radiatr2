@@ -22,4 +22,15 @@ describe Jenkins::Parser do
     data = {'actions' => [{'failCount' => 2}, {'failCount' => 3}]}
     @parser.fail_count(data).should == 5
   end
+
+  it "should return the result for a finished job" do
+    data = {'result' => 'broken'}
+    @parser.status(data, nil).should == 'broken'
+  end
+
+  it "should get the result of the previous build for a non-finished job" do
+    full_data = { "builds" => [{}, {"url" => "myurl"}] }
+    @parser.fetcher.should_receive(:fetch).with("myurl/api/json").and_return({ "result" => 'broken' })
+    @parser.status({}, full_data).should == 'broken'
+  end
 end
