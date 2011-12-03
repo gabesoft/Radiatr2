@@ -29,6 +29,7 @@ describe Jenkins::Parser do
   end
 
   it "should get the result of the previous build for a non-finished job" do
+    @parser = Jenkins::Parser.new({})
     full_data = { "builds" => [{}, {"url" => "myurl"}] }
     @parser.fetcher.should_receive(:fetch).with("myurl/api/json").and_return({ "result" => 'broken' })
     @parser.status({}, full_data).should == 'broken'

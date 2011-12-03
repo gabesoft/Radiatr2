@@ -8,12 +8,12 @@ module Jenkins
 
     def parse(data, full_data)
       { :job => data["fullDisplayName"],
-        :health => health_from_data(full_data),
-        :committers => committers_from_data(data),
+        :health => health(full_data),
+        :committers => committers(data),
         :building => data["building"],
         :status => status(data, full_data),
-        :duration => duration_from_data(data),
-        :progress => time_building_from_data(data),
+        :duration => duration(data),
+        :progress => time_building(data),
         :failures => fail_count(data),
         :comments => comments(data) }
     end
@@ -24,20 +24,20 @@ module Jenkins
       data["result"]
     end
 
-    def health_from_data full_data
+    def health full_data
       full_data["healthReport"][0]["score"]
     end
 
-    def committers_from_data data
+    def committers data
       data["changeSet"]["items"][0]["user"] if data["changeSet"]["items"].size > 0
     end
 
-    def duration_from_data data
+    def duration data
       seconds = time_building_from_data(data)
       (seconds / 60).to_s + "m " + (seconds % 60).to_s + "s"
     end
 
-    def time_building_from_data data
+    def time_building data
       return (((Time.now.to_f * 1000) - data["timestamp"]) / 1000).to_i if data["duration"] == 0
       data["duration"] / 1000
     end
