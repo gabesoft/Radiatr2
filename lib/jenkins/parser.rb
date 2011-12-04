@@ -25,7 +25,7 @@ module Jenkins
         :building => last_build["building"],
         :status => status,
         :duration => duration,
-        :progress => time_building,
+        :progress => progress,
         :failures => fail_count,
         :comments => comments }
     end
@@ -49,8 +49,16 @@ module Jenkins
     end
 
     def time_building
-      return (((Time.now.to_f * 1000) - last_build["timestamp"]) / 1000).to_i if last_build["duration"] == 0
+      return seconds_since last_build["timestamp"].to_i if last_build["duration"] == 0
       last_build["duration"] / 1000
+    end
+
+    def seconds_since timestamp
+      (((Time.now.to_f * 1000) - timestamp.to_i) / 1000).to_i
+    end
+
+    def progress
+      100 * time_building / (last_completed_build["duration"] / 1000)
     end
 
     def fail_count

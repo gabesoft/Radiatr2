@@ -10,7 +10,7 @@ createBuildRow = (build) ->
   result = "<tr class='" + getStatusClass(build) + "'>"
   result += "<td>" + build.job + "</td>"
   result += "<td>" + build.health + "</td>"
-  result += "<td id='progressbar'>" + build.duration + "</td>"
+  result += "<td class='progressbar-" + build.progress + "'>" + build.duration + "</td>"
   result += "<td>" + build.failures + "</td>"
   result += "</tr>"
   if(build.status == 'FAILURE')
@@ -18,7 +18,7 @@ createBuildRow = (build) ->
     result += "<td colspan=4>" + build.comments + "</td>"
     result += "</tr>"
   result
-    
+
 createHeaderRow = ->
   result = "<tr>"
   result += "<th>Job Name</th>"
@@ -27,12 +27,18 @@ createHeaderRow = ->
   result += "<th>Failures</th>"
   result += "</tr>"
 
+progress_value = (progress) ->
+  if progress < 100 then progress else 0
+
+progress = (progress) ->
+  $('.progressbar-'+progress).progressbar({ value: progress_value(progress) })
+
 populateGrid = (data) ->
   $('#grid').text ''
   $('#grid').append createHeaderRow()
   for build in JSON.parse(data).builds
     $('#grid').append createBuildRow build
-    progress(build.duration)
+    progress(build.progress)
   $('.building').filter(':not(:animated)').effect('pulsate', { times: 1, opacity: 0.5 }, 2000)
 
 tick = ->
@@ -41,8 +47,5 @@ tick = ->
     url: '/builds'
     success: populateGrid
   }
-
-progress = (duration) ->
-  $('#progressbar' ).progressbar({ value: progress/100000 })
 
 $(document).ready -> setInterval tick, 3000

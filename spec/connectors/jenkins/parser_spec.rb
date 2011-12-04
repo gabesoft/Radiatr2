@@ -37,4 +37,11 @@ describe Jenkins::Parser do
     @parser.status.should == 'broken'
   end
 
+  it 'should calculate the percentage complete' do
+    building_data = { "timestamp" => (Time.now.to_i + 5000) * 1000, "duration" => 0 }
+    last_completed_data = { "duration" => 10000 }
+    @parser.fetcher.should_receive(:fetch).with("/lastCompletedBuild/api/json").at_least(:once).and_return(last_completed_data)
+    @parser.fetcher.should_receive(:fetch).with("/lastBuild/api/json").at_least(:once).and_return(building_data)
+    @parser.progress.should == 50
+  end
 end
