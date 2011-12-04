@@ -1,12 +1,13 @@
 module Jenkins
   class Fetcher
-    def initialize(user=nil, password=nil)
+    def initialize(url, user=nil, password=nil)
+      @url = url
       @user = user
       @password = password
     end
 
-    def fetch url
-      get_uri URI.parse url
+    def fetch relative_url
+      get_uri URI.parse(@url + relative_url)
     end
 
     def get_uri uri
