@@ -10,6 +10,7 @@ group :development do
   gem 'coffee-script'
   gem 'rack-coffee'
   gem 'therubyracer'
+  gem 'thin'
 end
 
 group :test do
