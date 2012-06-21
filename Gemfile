@@ -9,7 +9,10 @@ gem 'json'
 group :development do
   gem 'coffee-script'
   gem 'rack-coffee'
+
+  # this should be removed on windows
   gem 'therubyracer'
+
   gem 'thin'
 end
 
