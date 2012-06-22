@@ -117,38 +117,38 @@ td {
 }
 
 tr.fail td {
-    background: -webkit-gradient(linear, left top, left bottom, from(#c33), to(#b22), color-stop(0.5, #b22), color-stop(0.5, #c33));
-    background: -moz-linear-gradient(top, #c33, #b22 50%, #c33 50%, #b22);
+    background: -webkit-gradient(linear, left top, left bottom, from(#c33), to(#b22), color-stop(1.0, #b22), color-stop(1.0, #c33));
+    background: -moz-linear-gradient(top, #c33, #b22 100%, #c33 100%, #b22);
 }
 
 tr.success td {
-    background: -webkit-gradient(linear, left top, left bottom, from(#3c3), to(#2b2), color-stop(0.5, #2b2), color-stop(0.5, #3c3));
-    background: -moz-linear-gradient(top, #3c3, #2b2 50%, #3c3 50%, #2b2);
+    background: -webkit-gradient(linear, left top, left bottom, from(#3c3), to(#2b2), color-stop(1.0, #2b2), color-stop(1.0, #3c3));
+    background: -moz-linear-gradient(top, #3c3, #2b2 100%, #3c3 100%, #2b2);
 }
 
 tr.unstable td {
-    background: -webkit-gradient(linear, left top, left bottom, from(#c33), to(#b22), color-stop(0.5, #b22), color-stop(0.5, #c33));
-    background: -moz-linear-gradient(top, #c33, #b22 50%, #c33 50%, #b22);
+    background: -webkit-gradient(linear, left top, left bottom, from(#c33), to(#b22), color-stop(1.0, #b22), color-stop(1.0, #c33));
+    background: -moz-linear-gradient(top, #c33, #b22 100%, #c33 100%, #b22);
     /* yellow */
     /*background: -webkit-gradient(linear, left top, left bottom, from(#D7EA01), to(#CDDF01), color-stop(0.5, #CDDF01), color-stop(0.5, #D7EA01));*/
     /*background: -moz-linear-gradient(top, #D7EA01, #CDDF01 50%, #D7EA01 50%, #CDDF01);*/
 }
 
 tr.success.building td {
-    background: -webkit-gradient(linear, left top, left bottom, from(#3c3), to(#2b2), color-stop(0.5, #2b2), color-stop(0.5, #3c3));
-    background: -moz-linear-gradient(top, #3c3, #2b2 50%, #3c3 50%, #2b2);
+    background: -webkit-gradient(linear, left top, left bottom, from(#3c3), to(#2b2), color-stop(1.0, #2b2), color-stop(1.0, #3c3));
+    background: -moz-linear-gradient(top, #3c3, #2b2 100%, #3c3 100%, #2b2);
     text-shadow: white 1px 1px 0.3em;     
 }
 
 tr.fail.building td {
-    background: -webkit-gradient(linear, left top, left bottom, from(#c33), to(#b22), color-stop(0.5, #b22), color-stop(0.5, #c33));
-    background: -moz-linear-gradient(top, #c33, #b22 50%, #c33 50%, #b22);
+    background: -webkit-gradient(linear, left top, left bottom, from(#c33), to(#b22), color-stop(1.0, #b22), color-stop(1.0, #c33));
+    background: -moz-linear-gradient(top, #c33, #b22 100%, #c33 100%, #b22);
     text-shadow: white 1px 1px 0.3em;     
 }
 
 tr.unstable.building td {
-    background: -webkit-gradient(linear, left top, left bottom, from(#c33), to(#b22), color-stop(0.5, #b22), color-stop(0.5, #c33));
-    background: -moz-linear-gradient(top, #c33, #b22 50%, #c33 50%, #b22);
+    background: -webkit-gradient(linear, left top, left bottom, from(#c33), to(#b22), color-stop(1.0, #b22), color-stop(1.0, #c33));
+    background: -moz-linear-gradient(top, #c33, #b22 100%, #c33 100%, #b22);
     /* yellow */
     /*background: -webkit-gradient(linear, left top, left bottom, from(#D7EA01), to(#CDDF01), color-stop(0.5, #CDDF01), color-stop(0.5, #D7EA01));*/
     /*background: -moz-linear-gradient(top, #D7EA01, #CDDF01 50%, #D7EA01 50%, #CDDF01);*/
@@ -156,8 +156,8 @@ tr.unstable.building td {
 }
 
 tr.comment {
-    background: -webkit-gradient(linear, left top, left bottom, from(#c33), to(#b22), color-stop(0.5, #b22), color-stop(0.5, #c33));  
-    background: -moz-linear-gradient(top, #c33, #b22 50%, #c33 50%, #b22);
+    background: -webkit-gradient(linear, left top, left bottom, from(#c33), to(#b22), color-stop(1.0, #b22), color-stop(1.0, #c33));  
+    background: -moz-linear-gradient(top, #c33, #b22 100%, #c33 100%, #b22);
     font-size: 25px;
 }
 
