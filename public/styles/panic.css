@@ -127,8 +127,8 @@ tr.success td {
 }
 
 tr.unstable td {
-    background: -webkit-gradient(linear, left top, left bottom, from(#e8f64f), to(#d2df45), color-stop(0.5, #d2df45), color-stop(0.5, #e8f64f));
-    background: -moz-linear-gradient(top, #e8f64f, #d2df45 50%, #e8f64f 50%, #d2df45);
+    background: -webkit-gradient(linear, left top, left bottom, from(#D7EA01), to(#CDDF01), color-stop(0.5, #CDDF01), color-stop(0.5, #D7EA01));
+    background: -moz-linear-gradient(top, #D7EA01, #CDDF01 50%, #D7EA01 50%, #CDDF01);
 }
 
 tr.success.building td {
@@ -144,8 +144,8 @@ tr.fail.building td {
 }
 
 tr.unstable.building td {
-    background: -webkit-gradient(linear, left top, left bottom, from(#e8f64f), to(#d2df45), color-stop(0.5, #d2df45), color-stop(0.5, #e8f64f));
-    background: -moz-linear-gradient(top, #e8f64f, #d2df45 50%, #e8f64f 50%, #d2df45);
+    background: -webkit-gradient(linear, left top, left bottom, from(#D7EA01), to(#CDDF01), color-stop(0.5, #CDDF01), color-stop(0.5, #D7EA01));
+    background: -moz-linear-gradient(top, #D7EA01, #CDDF01 50%, #D7EA01 50%, #CDDF01);
     text-shadow: white 1px 1px 0.3em;     
 }
 
