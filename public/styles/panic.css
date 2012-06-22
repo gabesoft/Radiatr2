@@ -110,8 +110,8 @@ td {
     margin: 10px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
-    background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#222), color-stop(0.5, #222), color-stop(0.5, #333));
-    background: -moz-linear-gradient(top, #333, #222 50%, #333 50%, #222);
+    background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#222), color-stop(1.0, #222), color-stop(1.0, #333));
+    background: -moz-linear-gradient(top, #333, #222 100%, #333 100%, #222);
     border-bottom: 1px solid #555;
     vertical-align: middle;
 }
