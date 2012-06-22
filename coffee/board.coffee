@@ -10,7 +10,11 @@ createBuildRow = (build) ->
   result = "<tr class='" + getStatusClass(build) + "'>"
   result += "<td>" + build.job + "</td>"
   result += "<td>" + build.health + "</td>"
-  result += "<td class='progressbar-" + build.progress + "'>" + build.duration + "</td>"
+  result += "<td >" + build.duration
+  result += "<div class='progress'>"
+  result += "<div class='progressbar-" + build.progress + "'>" + build.duration + "</div>"
+  result += "</div>"
+  result += "</td>"
   result += "<td>" + build.failures + "</td>"
   result += "</tr>"
   if(build.status == 'FAILURE')
