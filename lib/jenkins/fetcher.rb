@@ -14,7 +14,9 @@ module Jenkins
       http = Net::HTTP.new(uri.host, uri.port)
       request = Net::HTTP::Get.new(uri.request_uri)
       request.basic_auth(@user, @password) if has_login?
-      ::JSON.parse http.request(request).body
+      body = http.request(request).body
+      body = body.gsub("", "")
+      ::JSON.parse body
     end
 
     def has_login?
