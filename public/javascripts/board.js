@@ -33,7 +33,6 @@
         result = "<tr class='" + getStatusClass(build) + "'>";
         result += "<td>" + build.job + "</td>";
         result += "<td>" + build.health + "</td>";
-        //result += "<td class='progressbar-" + build.progress + "'>" + build.duration + "</td>";
         result += "<td >" + build.duration;
         result += "<div class='" + getBuildClass(build) + "'>";
         result += "<div class='progressbar-" + build.progress + "'>" + "</div>";
@@ -41,7 +40,7 @@
         result += "</td>";
         result += "<td>" + build.failures + "</td>";
         result += "</tr>";
-        if (build.status === 'FAILURE') {
+        if (build.status === 'FAILURE' && build.comments) {
             result += "<tr class='comment'>";
             result += "<td colspan=4>" + build.comments + "</td>";
             result += "</tr>";
@@ -56,7 +55,8 @@
         result += "<th>Health</th>";
         result += "<th>Duration</th>";
         result += "<th>Failures</th>";
-        return result += "</tr>";
+        result += "</tr>";
+        return result;
     };
 
     progress_value = function(progress) {

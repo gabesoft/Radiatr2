@@ -107,6 +107,7 @@ td {
     background-color: #1c2020;
     text-align: left;
     padding-left: 10px;
+    padding-right: 10px;
     margin: 10px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -440,7 +441,7 @@ li .content {
  */
 .progress {
     border: #e6fc78 1px solid;
-    width: 150px;
+    width: 100%;
     padding: 0;
     margin: 0;
     height: 0.4em;
