@@ -29,6 +29,15 @@ module Jenkins
         def parse
             time_human = distance_of_time_in_words(Time.at(last_build['timestamp'] / 1000), Time.now) 
             time_human = time_human.gsub(/^about\s+/, '')
+            #time_human = time_human.gsub(/minutes/, 'mins')
+            #time_human = time_human.gsub(/seconds/, 'secs')
+            time_human = time_human
+
+            #current_duration = time_building
+            #hours = current_duration / 3600
+            #minutes = (current_duration % 3600) / 60
+            #seconds = (current_duration % 60)
+            #time_human = format("%d:%d ago", hours, minutes)
             return { 
                 :job => last_build["fullDisplayName"],
                 :health => health,
@@ -39,7 +48,7 @@ module Jenkins
                 :progress => progress,
                 :failures => fail_count,
                 :timestamp => last_build["timestamp"],
-                :time_human => time_human + ' ago',
+                :time_human => time_human,
                 :comments => comments 
             }
         end

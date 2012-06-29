@@ -28,6 +28,7 @@ GEM
       actionpack (~> 3)
     erubis (2.7.0)
     eventmachine (0.12.10)
+    eventmachine (1.0.0.rc.1-x86-mingw32)
     execjs (1.2.1)
       multi_json (~> 1.0)
     hike (1.2.1)
