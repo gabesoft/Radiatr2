@@ -1,0 +1,12 @@
+{
+    "server": {
+        "command": "thin"
+      , "color": "cyan"
+      , "args": [ "start" ]
+    }
+  , "jenkins": {
+        "command": "ruby"
+      , "color": "yellow"
+      , "args": [ "test_server.rb" ]
+    }
+}

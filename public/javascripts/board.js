@@ -30,22 +30,52 @@
 
     createBuildRow = function(build) {
         var result;
-        result = "<tr class='" + getStatusClass(build) + "'>";
-        result += "<td>" + build.job + "</td>";
-        result += "<td>" + build.health + "</td>";
-        result += "<td >" + build.duration;
-        result += "<div class='" + getBuildClass(build) + "'>";
-        result += "<div class='progressbar-" + build.progress + "'>" + "</div>";
-        result += "</div>";
-        result += "</td>";
-        result += "<td>" + build.failures + "</td>";
-        result += "</tr>";
+
+        // TODO: display build date
+        //       add timestamp like : a day ago, etc
+        //       change duration format to hh:mm:ss
+        //console.log(new Date(build.timestamp));
+        //       delete coffee/ + all unused files !!
+
+        var rowTmpl     = $('#row-tmpl').text();
+        var commentTmpl = $('#comment-tmpl').text();
+
+        var row = Mustache.render(rowTmpl, {
+                statusCls: getStatusClass(build)
+              , job: build.job
+              , health: build.health
+              , duration: build.duration
+              , progressBuildCls: getBuildClass(build)
+              , progressValueCls: 'progressbar-' + build.progress
+              , failures: build.failures
+            });
+
+        var comment = '';
+
+        if (build.status === 'FAILURE' && build.comments) {
+            comment = Mustache.render(commentTmpl, { comments: build.comments });
+        }
+
+
+
+        //result = "<tr class='" + getStatusClass(build) + "'>";
+        //result += "<td>" + build.job + "</td>";
+        //result += "<td>" + build.health + "</td>";
+        //result += "<td >" + build.duration;
+        //result += "<div class='" + getBuildClass(build) + "'>";
+        //result += "<div class='progressbar-" + build.progress + "'>" + "</div>";
+        //result += "</div>";
+        //result += "</td>";
+        //result += "<td>" + build.failures + "</td>";
+        //result += "</tr>";
         if (build.status === 'FAILURE' && build.comments) {
             result += "<tr class='comment'>";
             result += "<td colspan=4>" + build.comments + "</td>";
             result += "</tr>";
         }
-        return result;
+
+        return row + comment;
+        //return result;
     };
 
     createHeaderRow = function() {
