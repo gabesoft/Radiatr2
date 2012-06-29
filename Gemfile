@@ -10,12 +10,10 @@ group :development do
   gem 'coffee-script'
   gem 'rack-coffee'
   gem 'actionpack'
-  gem 'dotiw'
-
-  # this should be removed on windows
-  gem 'therubyracer'
-
   gem 'thin'
+
+  # comment out on windows
+  gem 'therubyracer'
 end
 
 group :test do

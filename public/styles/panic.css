@@ -117,63 +117,6 @@ td {
     vertical-align: middle;
 }
 
-/*green*/
-/*background: rgb(120,205,55); [> Old browsers <]*/
-/*background: -moz-linear-gradient(top,  rgba(120,205,55,1) 0%, rgba(68,138,18,1) 50%, rgba(120,205,55,1) 100%); [> FF3.6+ <]*/
-/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(120,205,55,1)), color-stop(50%,rgba(68,138,18,1)), color-stop(100%,rgba(120,205,55,1))); [> Chrome,Safari4+ <]*/
-/*background: -webkit-linear-gradient(top,  rgba(120,205,55,1) 0%,rgba(68,138,18,1) 50%,rgba(120,205,55,1) 100%); [> Chrome10+,Safari5.1+ <]*/
-/*background: -o-linear-gradient(top,  rgba(120,205,55,1) 0%,rgba(68,138,18,1) 50%,rgba(120,205,55,1) 100%); [> Opera 11.10+ <]*/
-/*background: -ms-linear-gradient(top,  rgba(120,205,55,1) 0%,rgba(68,138,18,1) 50%,rgba(120,205,55,1) 100%); [> IE10+ <]*/
-/*background: linear-gradient(top,  rgba(120,205,55,1) 0%,rgba(68,138,18,1) 50%,rgba(120,205,55,1) 100%); [> W3C <]*/
-/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#78cd37', endColorstr='#78cd37',GradientType=0 ); [> IE6-9 <]*/
-
-/*background: rgb(23,171,50); [> Old browsers <]*/
-/*background: -moz-linear-gradient(top,  rgba(23,171,50,1) 0%, rgba(14,102,32,1) 49%, rgba(23,171,50,1) 100%); [> FF3.6+ <]*/
-/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(23,171,50,1)), color-stop(49%,rgba(14,102,32,1)), color-stop(100%,rgba(23,171,50,1))); [> Chrome,Safari4+ <]*/
-/*background: -webkit-linear-gradient(top,  rgba(23,171,50,1) 0%,rgba(14,102,32,1) 49%,rgba(23,171,50,1) 100%); [> Chrome10+,Safari5.1+ <]*/
-/*background: -o-linear-gradient(top,  rgba(23,171,50,1) 0%,rgba(14,102,32,1) 49%,rgba(23,171,50,1) 100%); [> Opera 11.10+ <]*/
-/*background: -ms-linear-gradient(top,  rgba(23,171,50,1) 0%,rgba(14,102,32,1) 49%,rgba(23,171,50,1) 100%); [> IE10+ <]*/
-/*background: linear-gradient(top,  rgba(23,171,50,1) 0%,rgba(14,102,32,1) 49%,rgba(23,171,50,1) 100%); [> W3C <]*/
-/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#17ab32', endColorstr='#17ab32',GradientType=0 ); [> IE6-9 <]*/
-
-/*red*/
-/*background: rgb(255,66,53); [> Old browsers <]*/
-/*background: -moz-linear-gradient(top,  rgba(255,66,53,1) 0%, rgba(184,15,0,1) 50%, rgba(255,66,53,1) 100%); [> FF3.6+ <]*/
-/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,66,53,1)), color-stop(50%,rgba(184,15,0,1)), color-stop(100%,rgba(255,66,53,1))); [> Chrome,Safari4+ <]*/
-/*background: -webkit-linear-gradient(top,  rgba(255,66,53,1) 0%,rgba(184,15,0,1) 50%,rgba(255,66,53,1) 100%); [> Chrome10+,Safari5.1+ <]*/
-/*background: -o-linear-gradient(top,  rgba(255,66,53,1) 0%,rgba(184,15,0,1) 50%,rgba(255,66,53,1) 100%); [> Opera 11.10+ <]*/
-/*background: -ms-linear-gradient(top,  rgba(255,66,53,1) 0%,rgba(184,15,0,1) 50%,rgba(255,66,53,1) 100%); [> IE10+ <]*/
-/*background: linear-gradient(top,  rgba(255,66,53,1) 0%,rgba(184,15,0,1) 50%,rgba(255,66,53,1) 100%); [> W3C <]*/
-/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff4235', endColorstr='#ff4235',GradientType=0 ); [> IE6-9 <]*/
-
-/*background: rgb(171,43,23); [> Old browsers <]*/
-/*background: -moz-linear-gradient(top,  rgba(171,43,23,1) 0%, rgba(102,27,14,1) 49%, rgba(171,43,23,1) 100%); [> FF3.6+ <]*/
-/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(171,43,23,1)), color-stop(49%,rgba(102,27,14,1)), color-stop(100%,rgba(171,43,23,1))); [> Chrome,Safari4+ <]*/
-/*background: -webkit-linear-gradient(top,  rgba(171,43,23,1) 0%,rgba(102,27,14,1) 49%,rgba(171,43,23,1) 100%); [> Chrome10+,Safari5.1+ <]*/
-/*background: -o-linear-gradient(top,  rgba(171,43,23,1) 0%,rgba(102,27,14,1) 49%,rgba(171,43,23,1) 100%); [> Opera 11.10+ <]*/
-/*background: -ms-linear-gradient(top,  rgba(171,43,23,1) 0%,rgba(102,27,14,1) 49%,rgba(171,43,23,1) 100%); [> IE10+ <]*/
-/*background: linear-gradient(top,  rgba(171,43,23,1) 0%,rgba(102,27,14,1) 49%,rgba(171,43,23,1) 100%); [> W3C <]*/
-/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ab2b17', endColorstr='#ab2b17',GradientType=0 ); [> IE6-9 <]*/
-
-/*yellow*/
-/*background: rgb(255,228,53); [> Old browsers <]*/
-/*background: -moz-linear-gradient(top,  rgba(255,228,53,1) 0%, rgba(184,163,0,1) 50%, rgba(255,228,53,1) 100%); [> FF3.6+ <]*/
-/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,228,53,1)), color-stop(50%,rgba(184,163,0,1)), color-stop(100%,rgba(255,228,53,1))); [> Chrome,Safari4+ <]*/
-/*background: -webkit-linear-gradient(top,  rgba(255,228,53,1) 0%,rgba(184,163,0,1) 50%,rgba(255,228,53,1) 100%); [> Chrome10+,Safari5.1+ <]*/
-/*background: -o-linear-gradient(top,  rgba(255,228,53,1) 0%,rgba(184,163,0,1) 50%,rgba(255,228,53,1) 100%); [> Opera 11.10+ <]*/
-/*background: -ms-linear-gradient(top,  rgba(255,228,53,1) 0%,rgba(184,163,0,1) 50%,rgba(255,228,53,1) 100%); [> IE10+ <]*/
-/*background: linear-gradient(top,  rgba(255,228,53,1) 0%,rgba(184,163,0,1) 50%,rgba(255,228,53,1) 100%); [> W3C <]*/
-/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe435', endColorstr='#ffe435',GradientType=0 ); [> IE6-9 <]*/
-
-/*background: rgb(171,154,23); [> Old browsers <]*/
-/*background: -moz-linear-gradient(top,  rgba(171,154,23,1) 0%, rgba(102,93,14,1) 49%, rgba(171,154,23,1) 100%); [> FF3.6+ <]*/
-/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(171,154,23,1)), color-stop(49%,rgba(102,93,14,1)), color-stop(100%,rgba(171,154,23,1))); [> Chrome,Safari4+ <]*/
-/*background: -webkit-linear-gradient(top,  rgba(171,154,23,1) 0%,rgba(102,93,14,1) 49%,rgba(171,154,23,1) 100%); [> Chrome10+,Safari5.1+ <]*/
-/*background: -o-linear-gradient(top,  rgba(171,154,23,1) 0%,rgba(102,93,14,1) 49%,rgba(171,154,23,1) 100%); [> Opera 11.10+ <]*/
-/*background: -ms-linear-gradient(top,  rgba(171,154,23,1) 0%,rgba(102,93,14,1) 49%,rgba(171,154,23,1) 100%); [> IE10+ <]*/
-/*background: linear-gradient(top,  rgba(171,154,23,1) 0%,rgba(102,93,14,1) 49%,rgba(171,154,23,1) 100%); [> W3C <]*/
-/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ab9a17', endColorstr='#ab9a17',GradientType=0 ); [> IE6-9 <]*/
-
 tr.fail td {
     background: -moz-linear-gradient(top,  rgba(171,43,23,1) 0%, rgba(102,27,14,1) 49%, rgba(171,43,23,1) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(171,43,23,1)), color-stop(49%,rgba(102,27,14,1)), color-stop(100%,rgba(171,43,23,1))); /* Chrome,Safari4+ */
@@ -378,7 +321,6 @@ li .content {
 #bar_1 {
     background: #FABD15;
     border-color: #FABD15;
-    /*	border-left-color: #d5a110; */
     border-left-color: #fed615;
     border-top-color: #fed615;
     border-right-color: #d5a110;
@@ -387,7 +329,6 @@ li .content {
 #bar_2 {
     background: #49C817;
     border-color: #49C817;
-    /*	border-left-color: #38a410; */
     border-left-color: #4fdd15;
     border-top-color: #4fdd15;
     border-right-color: #38a410;	
@@ -396,7 +337,6 @@ li .content {
 #bar_3 {
     background: #FD3B15;
     border-color: #FD3B15;
-    /*	border-left-color: #cd2e14; */
     border-left-color: #ff4c21;
     border-top-color: #ff4c21;
     border-right-color: #cd2e14;		
@@ -405,7 +345,6 @@ li .content {
 #bar_4 {
     background: #7554BF;
     border-color: #7554BF;
-    /*	border-left-color: #6345a5; */
     border-left-color: #835dd7;	
     border-top-color: #835dd7;	
     border-right-color: #6345a5; 
@@ -414,7 +353,6 @@ li .content {
 #bar_5 {
     background: #107CF8;
     border-color: #107CF8;
-    /*	border-left-color: #3368d7; */
     border-left-color: #1288ff;
     border-top-color: #1288ff;	
     border-right-color: #3368d7;	
@@ -423,7 +361,6 @@ li .content {
 #bar_6 {
     background: #d8d309;
     border-color: #d8d309;
-    /*	border-left-color: #beba06; */
     border-left-color: #ede80a;
     border-top-color: #ede80a;	
     border-right-color: #beba06;	
@@ -437,22 +374,11 @@ li .content {
     display: inline;
 }
 
-/* @end */
-/*
- * jQuery UI Progressbar 1.8.14
- *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Progressbar#theming
- */
 .progress {
     border: #e6fc78 1px solid;
     width: 100%;
-    padding: 0;
+    padding-top 10px;
     margin: 0;
-    /*height: 0.4em;*/
     display: none;
 }
 
@@ -460,12 +386,15 @@ li .content {
     display: block;
 }
 
-.ui-progressbar { height:1em; text-align: left; }
+.ui-progressbar { 
+    height:1em;
+    text-align: left;
+}
+
 .ui-progressbar .ui-progressbar-value { 
     margin-top: 0px;
     margin-bottom: 0px;
     height: 100%;
-    /*height:0.4em;*/
 }
 .ui-widget-header { 
     padding: 0;

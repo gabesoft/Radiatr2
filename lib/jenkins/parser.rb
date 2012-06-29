@@ -1,8 +1,6 @@
 require 'rubygems'
 require 'action_view'
 require 'time'
-#require 'active_support/core_ext/numeric/time'
-#require 'dotiw'
 include ActionView::Helpers::DateHelper
 
 module Jenkins
@@ -27,30 +25,22 @@ module Jenkins
         end
 
         def parse
-            time_human = distance_of_time_in_words(Time.at(last_build['timestamp'] / 1000), Time.now) 
+            time       = Time.at(last_build['timestamp'] / 1000)
+            time_human = distance_of_time_in_words(time, Time.now) 
             time_human = time_human.gsub(/^about\s+/, '')
-            #time_human = time_human.gsub(/minutes/, 'mins')
-            #time_human = time_human.gsub(/seconds/, 'secs')
-            time_human = time_human
 
-            #current_duration = time_building
-            #hours = current_duration / 3600
-            #minutes = (current_duration % 3600) / 60
-            #seconds = (current_duration % 60)
-            #time_human = format("%d:%d ago", hours, minutes)
             return { 
-                :job => last_build["fullDisplayName"],
-                :health => health,
+                :job        => last_build["fullDisplayName"],
+                :health     => health,
                 :committers => committers,
-                :building => last_build["building"],
-                :status => status,
-                :duration => duration,
-                :progress => progress,
-                :failures => fail_count,
-                :timestamp => last_build["timestamp"],
+                :building   => last_build["building"],
+                :status     => status,
+                :duration   => duration,
+                :progress   => progress,
+                :failures   => fail_count,
+                :timestamp  => last_build["timestamp"],
                 :time_human => time_human,
-                :comments => comments 
-            }
+                :comments   => comments }
         end
 
         def status
@@ -68,11 +58,11 @@ module Jenkins
 
         def duration
             current_duration = time_building
-            hours = current_duration / 3600
-            minutes = (current_duration % 3600) / 60
-            seconds = (current_duration % 60)
-            #format("%02d:%02d:%02d", hours, minutes, seconds)
-            format("%d:%02d:%02d", hours, minutes, seconds)
+            hours            = current_duration / 3600
+            minutes          = (current_duration % 3600) / 60
+            seconds          = (current_duration % 60)
+            #format("%d:%02d:%02d", hours, minutes, seconds)
+            format("%02d:%02d", minutes, seconds)
         end
 
         def time_building
