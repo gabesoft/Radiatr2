@@ -36,6 +36,7 @@
         //       change duration format to hh:mm:ss
         //console.log(new Date(build.timestamp));
         //       delete coffee/ + all unused files !!
+        //       rename getBuildClass to getProgressClass
 
         var rowTmpl     = $('#row-tmpl').text();
         var commentTmpl = $('#comment-tmpl').text();
