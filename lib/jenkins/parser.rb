@@ -1,4 +1,12 @@
+require 'rubygems'
+require 'action_view'
+require 'time'
+#require 'active_support/core_ext/numeric/time'
+#require 'dotiw'
+include ActionView::Helpers::DateHelper
+
 module Jenkins
+
     class Parser
         attr_reader :fetcher
 
@@ -19,16 +27,21 @@ module Jenkins
         end
 
         def parse
-            { :job => last_build["fullDisplayName"],
-              :health => health,
-              :committers => committers,
-              :building => last_build["building"],
-              :status => status,
-              :duration => duration,
-              :progress => progress,
-              :failures => fail_count,
-              :timestamp => last_build["timestamp"],
-              :comments => comments }
+            time_human = distance_of_time_in_words(Time.at(last_build['timestamp'] / 1000), Time.now) 
+            time_human = time_human.gsub(/^about\s+/, '')
+            return { 
+                :job => last_build["fullDisplayName"],
+                :health => health,
+                :committers => committers,
+                :building => last_build["building"],
+                :status => status,
+                :duration => duration,
+                :progress => progress,
+                :failures => fail_count,
+                :timestamp => last_build["timestamp"],
+                :time_human => time_human + ' ago',
+                :comments => comments 
+            }
         end
 
         def status
@@ -45,8 +58,12 @@ module Jenkins
         end
 
         def duration
-            seconds = time_building
-            (seconds / 60).to_s + "m " + (seconds % 60).to_s + "s"
+            current_duration = time_building
+            hours = current_duration / 3600
+            minutes = (current_duration % 3600) / 60
+            seconds = (current_duration % 60)
+            #format("%02d:%02d:%02d", hours, minutes, seconds)
+            format("%d:%02d:%02d", hours, minutes, seconds)
         end
 
         def time_building
@@ -60,9 +77,9 @@ module Jenkins
 
         def progress
             duration = last_completed_build["duration"]
-            building = time_building
-            return 0.0 if duration.nil? || duration == 0 || building == 0
-            return 100 * building / (duration / 1000)
+            current_duration = time_building
+            return 0.0 if duration.nil? || duration == 0 || current_duration == 0
+            return 100 * current_duration / (duration / 1000)
         end
 
         def fail_count

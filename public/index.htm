@@ -13,26 +13,25 @@
     <script type='text/html', id='row-tmpl'>
         <tr class='{{statusCls}}'>
             <td>{{job}}</td>
-            <td>{{health}}</td>
-            <td>{{duration}}
+            <td>{{duration}}</td>
+            <td>
+                <div class='{{timeCls}}'>{{time}}</div>
                 <div class='{{progressBuildCls}}'>
                     <div class='{{progressValueCls}}'/>
                 </div>
             </td>
-            <td>{{failures}}</td>
         </tr>
     </script>
     <script type='text/html', id='comment-tmpl'>
         <tr class='comment'>
-            <td colspan=4>{{comments}}</td>
+            <td colspan=3>{{comments}}</td>
         </tr>
     </script>
     <script type='text/html', id='header-tmpl'>
         <tr>
             <th>Job Name</th>
-            <th>Health</th>
             <th>Duration</th>
-            <th>Failures</th>
+            <th>Time</th>
         </tr>
     </script>
     <style type='text/css'>

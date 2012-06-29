@@ -429,6 +429,14 @@ li .content {
     border-right-color: #beba06;	
 }
 
+.time-hidden {
+    display: none;
+}
+
+.time-visible {
+    display: inline;
+}
+
 /* @end */
 /*
  * jQuery UI Progressbar 1.8.14
@@ -444,7 +452,7 @@ li .content {
     width: 100%;
     padding: 0;
     margin: 0;
-    height: 0.4em;
+    /*height: 0.4em;*/
     display: none;
 }
 
@@ -456,7 +464,8 @@ li .content {
 .ui-progressbar .ui-progressbar-value { 
     margin-top: 0px;
     margin-bottom: 0px;
-    height:0.4em;
+    height: 100%;
+    /*height:0.4em;*/
 }
 .ui-widget-header { 
     padding: 0;

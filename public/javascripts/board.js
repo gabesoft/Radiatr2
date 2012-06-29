@@ -28,8 +28,12 @@
         }
     };
 
+    getTimeClass = function(build) {
+        return build.building ? 'time-hidden' : 'time-visible';
+    };
+
     createBuildRow = function(build) {
-        var result;
+        //var result;
 
         // TODO: display build date
         //       add timestamp like : a day ago, etc
@@ -46,8 +50,10 @@
               , job: build.job
               , health: build.health
               , duration: build.duration
+              , timeCls: getTimeClass(build)
               , progressBuildCls: getBuildClass(build)
               , progressValueCls: 'progressbar-' + build.progress
+              , time: build.time_human
               , failures: build.failures
             });
 
@@ -69,25 +75,28 @@
         //result += "</td>";
         //result += "<td>" + build.failures + "</td>";
         //result += "</tr>";
-        if (build.status === 'FAILURE' && build.comments) {
-            result += "<tr class='comment'>";
-            result += "<td colspan=4>" + build.comments + "</td>";
-            result += "</tr>";
-        }
+        //if (build.status === 'FAILURE' && build.comments) {
+            //result += "<tr class='comment'>";
+            //result += "<td colspan=4>" + build.comments + "</td>";
+            //result += "</tr>";
+        //}
 
         return row + comment;
         //return result;
     };
 
     createHeaderRow = function() {
-        var result;
-        result = "<tr>";
-        result += "<th>Job Name</th>";
-        result += "<th>Health</th>";
-        result += "<th>Duration</th>";
-        result += "<th>Failures</th>";
-        result += "</tr>";
-        return result;
+        var header = $('#header-tmpl').text();
+        console.log(header);
+        return Mustache.render(header);
+        //var result;
+        //result = "<tr>";
+        //result += "<th>Job Name</th>";
+        //result += "<th>Health</th>";
+        //result += "<th>Duration</th>";
+        //result += "<th>Failures</th>";
+        //result += "</tr>";
+        //return result;
     };
 
     progress_value = function(progress) {
